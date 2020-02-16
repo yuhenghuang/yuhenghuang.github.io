@@ -4,10 +4,13 @@ date: 2020-02-15 13:16:03
 tags: Mathematics
 category: Algorithm
 mathjax: true
+summary:
+top: false
+cover: true
 ---
 
 
-## Introduction
+## Introduction   
 
 This post is inspired by the problem from [LeetCode](https://leetcode.com/problems/generate-random-point-in-a-circle/), where one is asked to write a program to draw any point uniformly in a circle given its center coordinate and radius. The natural approach would be sampling two uniform random variables, which form a square geometrically, and rejecting them if they happen to fall out of the circle. This algorithm is high effecient in terms of expectation as the rejection area is only about \( \frac{1}{4} \) of the square.
 

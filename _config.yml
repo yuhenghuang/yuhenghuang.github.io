@@ -133,5 +133,6 @@ feed:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: 'git'
-  repository: https://github.com/yuhenghuang/yuhenghuang.github.io
+  repository: git@github.com:yuhenghuang/yuhenghuang.github.io
   branch: master
+  token: /home/yuhenghuang/.ssh/id_rsa
