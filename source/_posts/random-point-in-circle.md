@@ -12,7 +12,7 @@ cover: false
 
 ## Introduction   
 
-This post is inspired by the problem from [LeetCode](https://leetcode.com/problems/generate-random-point-in-a-circle/), where one is asked to write a program to draw any point uniformly in a circle given its center coordinate and radius. The natural approach would be sampling two uniform random variables, which form a square geometrically, and rejecting them if they happen to fall out of the circle. This algorithm is high effecient in terms of expectation as the rejection area is only about \( \frac{1}{4} \) of the square.
+This post is inspired by the problem from [LeetCode](https://leetcode.com/problems/generate-random-point-in-a-circle/), where one is asked to write a program to draw any point uniformly in a circle given its center coordinate and radius. The natural approach would be sampling two uniform random variables, which form a square geometrically, and rejecting them if they happen to fall out of the circle. This algorithm is highly efficient in terms of expectation as the rejection area is only about \( \frac{1}{4} \) of the square.
 
 The time and space complexity are now both \( Op(1) \), not the general \( O(1) \). The uncertainty is not a big problem in the context, but it still leaves a problem unsolved, that is, is there any other approach that could tackle the problem in a deterministic way?
 
@@ -20,7 +20,7 @@ The time and space complexity are now both \( Op(1) \), not the general \( O(1) 
 
 
 The most straight forward algorithm would be sampling rejection.
-Following codes briefly explain the algorithem.
+Following codes briefly explain the algorithm.
 
 A class is initialized with the information of the circle, and a random point is produced after the last draw falls into the circle.
 
@@ -50,7 +50,7 @@ The process is quite clear, but a little bit slower than an \( O(1) \) algorithm
 
 ## Mathematical approaches
 
-### Catesian coordinates
+### Cartesian coordinates
 
 Why don't we try to transform the problem into a mathematical problem.
 
@@ -79,7 +79,7 @@ LHS is constant and has already been obtained, and the support of \( f(y|x) \) c
 
 Let's assume that \( f(y|x) \) follows a uniform distribution on its support. This would not hurt us as long it does not violate the conditions.
 
-Proving condition is out of the scope of the post, but the assumption can be proved to be true by contradiction.
+Proving condition is out of the scope of the post, but the assumption can be proved to be true by contradiction straightforwardly.
 
 Given this new condition, the density of \( x \) is 
 
@@ -104,29 +104,30 @@ public class RandomPointInCircle {
 		yC=y_center;
 	}
 	
-  public double[] randPoint_xy() {
-    double tempX=Math.random()-0.5, tempY=(Math.random()-0.5)*2;
-    double x=binarySearch(tempX);
-    double y=Math.sqrt(1-x*x)*tempY;
-    double[] return new double[]{xC+r*x, yC+r*y};
-  }
-
-  private double binarySearch(double target) {
-    double left=-1, right=1, err=1, x=0;
-    while (Math.abs(err)>1e-8) {
-      x=(left+right)/2;
-      err=cdf(x)-target;
-      if (err>0)
-        right=x;
-      else
-        left=x;
-    }
-    return x;
-  }
-
-  private double cdf(double x) {
-    return  (x*Math.sqrt(1-x*x)+Math.asin(x))/Math.PI;
-  }
+	public double[] randPoint_xy() {
+		double tempX=Math.random()-0.5, tempY=(Math.random()-0.5)*2;
+		double x=binarySearch(tempX);
+		double y=Math.sqrt(1-x*x)*tempY;
+		double[] return new double[]{xC+r*x, yC+r*y};
+	}
+	
+	private double binarySearch(double target) {
+		double left=-1, right=1, err=1, x=0;
+		while (Math.abs(err)>1e-8) {
+			x=(left+right)/2;
+			err=cdf(x)-target;
+			if (err>0)
+				right=x;
+			else
+				left=x;
+		}
+		return x;
+	}
+	
+	private double cdf(double x) {
+		return  (x*Math.sqrt(1-x*x)+Math.asin(x))/Math.PI;
+	}
+}
 ```
 
 
@@ -134,7 +135,7 @@ public class RandomPointInCircle {
 
 The only downside of the cartesian coordinate approach is the binary search part. Because of it, the time complexity remains to be \( Op(1) \), though now space complexity is \( O(1) \).
 
-A natural thought would be to find a close-form CDF. But how?
+A natural thought would be to find a close-form inverse CDF. But how?
 
 In this subsection, we challenge the problem by another representation of circles.
 
@@ -162,7 +163,7 @@ Moreover, the CDF of \( d \) is
 \\[ F(d) = d^2 \\]
 , which just has a close-form inverse function.
 
-The idea furtherly simplified, or eliminated, the binary search part.
+The idea further simplified, or eliminated, the binary search part.
 
 ```java
 public class RandomPointInCircle {
@@ -174,11 +175,11 @@ public class RandomPointInCircle {
 	}
 	
 	public double[] randPoint() {
-    double theta=2*Math.PI*(Math.random()-0.5), dist=Math.sqrt(Math.random());
-    double x=Math.cos(theta)*dist, y=Math.sin(theta)*dist;
-    return new double[]{xC+r*x, yC+r*y};
-  }
+		double theta=2*Math.PI*(Math.random()-0.5), dist=Math.sqrt(Math.random());
+		double x=Math.cos(theta)*dist, y=Math.sin(theta)*dist;
+		return new double[]{xC+r*x, yC+r*y};
+	}
 }
 ```
 
-Finally we removed all the \( p \) from time complexity and space complexity. Dragon is defeated!
+Finally we removed all the \( p \), namely stochasticity, from time complexity and space complexity. Dragon is defeated!

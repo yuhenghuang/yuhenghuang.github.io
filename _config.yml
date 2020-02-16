@@ -49,7 +49,7 @@ highlight:
   enable: false
   line_number: false
   auto_detect: false
-  tab_replace: '  '
+  tab_replace: ''
   wrap: true
   hljs: true
 
@@ -58,7 +58,7 @@ prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
   theme: 'tomorrow'
   line_number: true     # default false
-  custom_css:
+  custom_css: 
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
