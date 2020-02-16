@@ -6,7 +6,7 @@ category: Algorithm
 mathjax: true
 summary:
 top: false
-cover: true
+cover: false
 ---
 
 
@@ -35,12 +35,12 @@ public class RandomPointInCircle {
 	}
 	
 	public double[] randPoint() {
-	while(True) {
-	//generate x and y by (Math.random()-0.5)*2
-	//if they are inside the unit circle, center at (0,0) and radius=1, break
-	//else continue
-	}
-	return new double[]{xC+r*x, yC+r*y};
+		while(True) {
+		//generate x and y by (Math.random()-0.5)*2
+		//if they are inside the unit circle, center at (0,0) and radius=1, break
+		//else continue
+		}
+		return new double[]{xC+r*x, yC+r*y};
 	}
 }
 ```
@@ -162,7 +162,7 @@ Moreover, the CDF of \( d \) is
 \\[ F(d) = d^2 \\]
 , which just has a close-form inverse function.
 
-The idea furtherly simplified the binary search part.
+The idea furtherly simplified, or eliminated, the binary search part.
 
 ```java
 public class RandomPointInCircle {
@@ -173,7 +173,7 @@ public class RandomPointInCircle {
 		yC=y_center;
 	}
 	
-	  public double[] randPoint() {
+	public double[] randPoint() {
     double theta=2*Math.PI*(Math.random()-0.5), dist=Math.sqrt(Math.random());
     double x=Math.cos(theta)*dist, y=Math.sin(theta)*dist;
     return new double[]{xC+r*x, yC+r*y};
