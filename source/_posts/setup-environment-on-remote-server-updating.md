@@ -165,7 +165,50 @@ This post record necessary documents for setting up environments on a remote ser
 
   The link can be found on [oracle.com](https://www.oracle.com/java/technologies/javase-jdk14-downloads.html)
 
-* Instructions
 
-    [official installation instruction](https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-linux-platforms.htm)
+* Download JRE from [here](https://www.oracle.com/java/technologies/javase-jre8-downloads.html)
 
+
+* Official instructions
+
+  [JDK](https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-linux-platforms.htm)
+
+  [JRE](https://docs.oracle.com/javase/8/docs/technotes/guides/install/linux_jre.html)
+
+
+### PySpark
+
+  * Find the proper version on [this site](https://spark.apache.org/downloads.html)
+
+  * Extract files and move to "*/opt/spark*"
+
+  * Add environment variables to "*~/.bashrc*"
+    * `export SPARK_HOME=/opt/spark`
+    * `export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin`
+
+  * Add JRE path to "*/opt/spark/conf/spark-env.sh*"
+    * copy "*spark-env.sh.template*" in the directory and remove the extension
+    * add `export JAVA_HOME=/your_path/jvm/jre1.8.0_251` and `export PATH=$PATH:$JAVA_HOME/bin` to "*/opt/spark/conf/spark-env.sh*"
+
+  <sup>* For windows users, please construct "*spark-env.cmd*" first in the directory, [reference](https://stackoverflow.com/questions/38300099/what-is-the-right-way-to-edit-spark-env-sh-before-running-spark-shell)<sup>
+
+  * Set log level in "*/opt/spark/conf/log4j.properties*" to suppress warnings
+    * copy `cp log4j.properties.template log4j.properties`
+    * add `log4j.logger.org.apache.spark.api.python.PythonGatewayServer=ERROR`
+
+
+Following steps add `native-hadoop library` to spark
+
+
+  * Download Hadoop from [here](https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz)
+
+
+  * Extract `tar zxvf {hadoop-.tar.gz}` and copy to "*/opt/hadoop*"
+
+  * Add following lines to "*/opt/spark/conf/spark-env.sh*"
+    ```bash
+    export HADOOP_HOME=/opt/hadoop
+    export PATH=$PATH:$HADOOP_HOME/bin
+
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HADOOP_HOME/lib/native
+    ```
