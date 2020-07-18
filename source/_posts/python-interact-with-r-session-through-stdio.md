@@ -82,7 +82,7 @@ library(tidyverse)
 df_raw <- tibble(
   x = c('いろは','やちよ','鶴乃'),
   y = 1:3,
-  y = c('うい', 'みふゆ', '万々歳')
+  z = c('うい', 'みふゆ', '万々歳')
 )
 
 # function to output the dataframe to stdout
@@ -129,13 +129,13 @@ def read_df(word, sess):
   # skip irrelevant lines
   # b'BODF\r\n' is defined in the R script
   line = 'initializer'
-  while line!=b'BODF\r\n':
+  while line!=b'BODF\n':
     line = sess.stdout.readline()
     
   # write all lines of dataframe to a buffer
   # data frame in lines of stdout from R session shall end with b'\r\n'
   buffer = BytesIO()
-  while line!=b'\r\n':
+  while line!=b'\n':
     line = sess.stdout.readline()
     buffer.write(line)
     
@@ -178,7 +178,7 @@ if __name__=='__main__':
      * `encoding='utf-8'` is necessary.
 
 
-### Control `stdout` by `Thread`
+### Monitor `stdout` from R by `Thread`
 
 To avoid the *deadlock* of the main thread, using another thread to listen to `stdout` is a good solution
 
@@ -198,14 +198,14 @@ def read_stdout(sess):
   flag_df = False
   for line in iter(sess.stdout.readline, b''):
     if flag_df:
-      if line==b'\r\n':
+      if line==b'\n':
         buffer.seek(0)
         df = pd.read_csv(buffer, sep='\t', encoding='utf-8')
         queue.put(df, False)
         flag_df = False
       else:
         buffer.write(line)
-    elif line==b'BODF\r\n':
+    elif line==b'BODF\n':
       flag_df = True
       buffer = BytesIO()
       
@@ -244,7 +244,7 @@ if __name__=='__main__':
 This enables more flexible control over the `stdout` stream and abstract the functionalities of each part better. Though more lines to handle exceptions are needed, the basic flow might be a good practice.
 
 
-### Class version of `Thread`
+### Class version of the previous approach using `Thread`
 
 ```python
 #!/usr/bin/env python3
@@ -280,14 +280,14 @@ class Rsession:
     flag_df = False
     for line in iter(self.sess.stdout.readline, b''):
       if flag_df:
-        if line==b'\r\n':
+        if line==b'\n':
           buffer.seek(0)
           df = pd.read_csv(buffer, sep='\t', encoding='utf-8')
           self.queue.put(df, False)
           flag_df = False
         else:
           buffer.write(line)
-      elif line==b'BODF\r\n':
+      elif line==b'BODF\n':
         flag_df = True
         buffer = BytesIO()
       
@@ -329,8 +329,12 @@ In real world applications, `callbacks` are definitely necessary to avoid those 
 
 * Windows
 
-There are many subtleties in Windows. But the *encoding/decoding* is the most complicated one among them. Like in my case, `stdin` and `stdout` are handled properly in `utf-8`, whereas the `stderr` is `ShiftJIS` inheriting settings from powershell. If only Windows were to support locales like `ja_JP.UTF-8`...
+There are many subtleties in Windows. 
 
-`rsession.terminate()` does not work... Try `subprocess.call(['taskkill', '/F', '/T', '/PID', str(rsession.pid)])` instead.
+  1. But the *encoding/decoding* is the most complicated one among them. Like in my case, `stdin` and `stdout` are handled properly in `utf-8`, whereas the `stderr` is `ShiftJIS` inheriting settings from powershell. If only Windows were to support locales like `ja_JP.UTF-8`...
+
+  2. `rsession.terminate()` does not work... Try `subprocess.call(['taskkill', '/F', '/T', '/PID', str(rsession.pid)])` instead. Even after killing the subprocess, one should run either `rsession.terminate()`/`rsession.kill()` or `rsession.wait()` to let the process instance know it is terminated. Otherwise, those methods of checking the status of the process would not work properly.
+
+  3. `End Of Line` from `stdout` on Windows is *'\r\n'* rather than *'\n'*.
 
 Developing on a unix system would solve them naturally...
