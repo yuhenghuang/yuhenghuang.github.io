@@ -97,7 +97,7 @@ This post record necessary documents for setting up environments on a remote ser
 
       `sudo apt update`
 
-      `sudoapt install r-base`
+      `sudo apt install r-base`
 
     * test installation
       

@@ -37,7 +37,7 @@ setConstructorS3("List", function(...) {
   extend(
     Object(),
     "List",
-    .ls = (...)
+    .ls = list(...)
   )
 })
 ```
@@ -65,7 +65,7 @@ setMethodS3("[[", "List", function(this, name) {
     return(get(name, envir = envir, inherits = FALSE))
   }
   else {
-    return(this[[".ls"]][[name,]])
+    return(this[[".ls"]][[name, exact=TRUE]])
   }
 })
 ```
