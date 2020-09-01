@@ -126,7 +126,8 @@ PWD=[password]
 
 *amazon.redshiftodbc.ini*
 ```ini
-ErrorMessagesPath=/opt/amazon/redshift/ErrorMessages
+locale=en-US
+ErrorMessagesPath=/opt/amazon/redshiftodbc/ErrorMessages
 LogLevel=0
 LogPath=[LogPath]
 
@@ -166,7 +167,8 @@ RUN apt-get -y install unixodbc unixodbc-dev
 # can also install other necessary packages here
 RUN R -e 'install.packages(c("odbc"))'
 
-ENV LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu
+
 COPY ./odbc.ini /etc/
 COPY ./odbcinst.ini /etc/
 COPY ./amazon.redshiftodbc.ini /opt/amazon/redshiftodbc/lib/64/
@@ -191,7 +193,13 @@ services:
       - USERID=rstudio
       # replace by your password
       - PASSWORD=yourpassword
+    sysctls:
+      - net.ipv4.tcp_keepalive_time=200
+      - net.ipv4.tcp_keepalive_intvl=200
+      - net.ipv4.tcp_keepalive_probes=5
 ```
+
+<sup>* `sysctls` options are to fix the timeout bug of docker in some cases. See references for more details.</sup>
 
 ### Connecting from R
 
@@ -220,3 +228,9 @@ con <- DBI::dbConnect(odbc::odbc(), "Amazon Redshift (x64)")
 # disconnect
 DBI::dbDisconnect(con)
 ```
+
+### Reference
+
+* [rstudio database](https://db.rstudio.com/databases/redshift/)
+
+* [TCP/IP timeout](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-firewall-guidance.html)
