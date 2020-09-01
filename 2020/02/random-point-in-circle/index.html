@@ -1,0 +1,1044 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="Draw a random point in a circle uniformly, Iceberg Tip">
+    <meta name="description" content="IntroductionThis post is inspired by the problem from LeetCode, where one is asked to write a program to draw any point ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Draw a random point in a circle uniformly | Iceberg Tip</title>
+    <link rel="icon" type="image/jpeg" href="/icon.jpeg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Iceberg Tip" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/icon.jpeg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Iceberg Tip</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/icon.jpeg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Iceberg Tip</div>
+        <div class="logo-desc">
+            
+            Record whatever interests me.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Draw a random point in a circle uniformly</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Mathematics/">
+                                <span class="chip bg-color">Mathematics</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Algorithm/" class="post-category">
+                                Algorithm
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2020-02-15
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    1k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                    6 Min
+                </div>
+                
+
+                
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This post is inspired by the problem from <a href="https://leetcode.com/problems/generate-random-point-in-a-circle/" target="_blank" rel="noopener">LeetCode</a>, where one is asked to write a program to draw any point uniformly in a circle given its center coordinate and radius. The natural approach would be sampling two uniform random variables, which form a square geometrically, and rejecting them if they happen to fall out of the circle. This algorithm is highly efficient in terms of expectation as the rejection area is only about ( \frac{1}{4} ) of the square.</p>
+<p>The time and space complexity are now both ( Op(1) ), not the general ( O(1) ). The uncertainty is not a big problem in the context, but it still leaves a problem unsolved, that is, is there any other approach that could tackle the problem in a deterministic way?</p>
+<h2 id="Sample-rejection-approach"><a href="#Sample-rejection-approach" class="headerlink" title="Sample rejection approach"></a>Sample rejection approach</h2><p>The most straight forward algorithm would be sampling rejection.<br>Following codes briefly explain the algorithm.</p>
+<p>A class is initialized with the information of the circle, and a random point is produced after the last draw falls into the circle.</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RandomPointInCircle</span> <span class="token punctuation">{</span>
+    <span class="token keyword">double</span> r<span class="token punctuation">,</span> xC<span class="token punctuation">,</span> yC<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">RandomPointInCircle</span><span class="token punctuation">(</span><span class="token keyword">double</span> radius<span class="token punctuation">,</span> <span class="token keyword">double</span> x_center<span class="token punctuation">,</span> <span class="token keyword">double</span> y_center<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        r<span class="token operator">=</span>radius<span class="token punctuation">;</span>
+        xC<span class="token operator">=</span>x_center<span class="token punctuation">;</span>
+        yC<span class="token operator">=</span>y_center<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">randPoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>True<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//generate x and y by (Math.random()-0.5)*2</span>
+        <span class="token comment" spellcheck="true">//if they are inside the unit circle, center at (0,0) and radius=1, break</span>
+        <span class="token comment" spellcheck="true">//else continue</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>xC<span class="token operator">+</span>r<span class="token operator">*</span>x<span class="token punctuation">,</span> yC<span class="token operator">+</span>r<span class="token operator">*</span>y<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>The process is quite clear, but a little bit slower than an ( O(1) ) algorithm.</p>
+<h2 id="Mathematical-approaches"><a href="#Mathematical-approaches" class="headerlink" title="Mathematical approaches"></a>Mathematical approaches</h2><h3 id="Cartesian-coordinates"><a href="#Cartesian-coordinates" class="headerlink" title="Cartesian coordinates"></a>Cartesian coordinates</h3><p>Why don’t we try to transform the problem into a mathematical problem.</p>
+<p>Let’s start from the conditions.</p>
+<p>To simply the notation, The circle is normalized to be centered at ( (0,0) ) with radius being 1.Thus, ( x ) and ( y ) lie between -1 and 1.</p>
+<p>Uniformality means the probability of draw any point is identical, that is, probability density function ( f(x,y) ) is a constant on the support.</p>
+<p>\[ 1 = \iint_\Omega f(x,y) \mathrm{d}x\mathrm{d}y \]<br>\[ 1 = f(x,y) \iint_\Omega \mathrm{d}x\mathrm{d}y \]<br>as ( f(x,y) ) is a constant.</p>
+<p>Since the integration is the area of the circle, we get<br>\[ f(x, y)=\frac{1}{\pi} \]</p>
+<p>Generally in an algorithmic setting, one can only generate random variables uniformly distributed between 0 and 1 independently. </p>
+<p>And obviously ( x ) and ( y ) are not independent of each other. At least the support is not independent from first look.</p>
+<p>The following theorem explains the relationship between joint distribution and marginal distribution.</p>
+<p>\[ f(x, y)=f(x) \times f(y|x) \]</p>
+<p>LHS is constant and has already been obtained, and the support of ( f(y|x) ) can also be derived as ( [-\sqrt{1-x^2}, \sqrt{1-x^2} ] ).</p>
+<p>Let’s assume that ( f(y|x) ) follows a uniform distribution on its support. This would not hurt us as long it does not violate the conditions.</p>
+<p>Proving condition is out of the scope of the post, but the assumption can be proved to be true by contradiction straightforwardly.</p>
+<p>Given this new condition, the density of ( x ) is </p>
+<p>\[ f(x) = \frac{2\sqrt{1-x^2}}{\pi} \]</p>
+<p>Thus its cumulative density function is derived by integration.</p>
+<p>\[ F(x) = \frac{1}{\pi}(x\sqrt{1-x^2} + \mathrm{arcsin}(x)) + \frac{1}{2} \]</p>
+<p>Now we can use the <a href="https://en.wikipedia.org/wiki/Random_number_generation" target="_blank" rel="noopener">inverse transform sampling-method</a> to generate ( x ) from a uniform variable between 0 and 1.</p>
+<p>It is a pity that the inverse of ( F(x) ) does not have a close form, but we can still find it using binary search in a reasonably short time.</p>
+<p>The code is exhibited as following.</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RandomPointInCircle</span> <span class="token punctuation">{</span>
+    <span class="token keyword">double</span> r<span class="token punctuation">,</span> xC<span class="token punctuation">,</span> yC<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">RandomPointInCircle</span><span class="token punctuation">(</span><span class="token keyword">double</span> radius<span class="token punctuation">,</span> <span class="token keyword">double</span> x_center<span class="token punctuation">,</span> <span class="token keyword">double</span> y_center<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        r<span class="token operator">=</span>radius<span class="token punctuation">;</span>
+        xC<span class="token operator">=</span>x_center<span class="token punctuation">;</span>
+        yC<span class="token operator">=</span>y_center<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">randPoint_xy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">double</span> tempX<span class="token operator">=</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">0.5</span><span class="token punctuation">,</span> tempY<span class="token operator">=</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword">double</span> x<span class="token operator">=</span><span class="token function">binarySearch</span><span class="token punctuation">(</span>tempX<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">double</span> y<span class="token operator">=</span>Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>x<span class="token operator">*</span>x<span class="token punctuation">)</span><span class="token operator">*</span>tempY<span class="token punctuation">;</span>
+        <span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>xC<span class="token operator">+</span>r<span class="token operator">*</span>x<span class="token punctuation">,</span> yC<span class="token operator">+</span>r<span class="token operator">*</span>y<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">double</span> <span class="token function">binarySearch</span><span class="token punctuation">(</span><span class="token keyword">double</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">double</span> left<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> right<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> err<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> x<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">abs</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1e-8</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            x<span class="token operator">=</span><span class="token punctuation">(</span>left<span class="token operator">+</span>right<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+            err<span class="token operator">=</span><span class="token function">cdf</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">-</span>target<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">)</span>
+                right<span class="token operator">=</span>x<span class="token punctuation">;</span>
+            <span class="token keyword">else</span>
+                left<span class="token operator">=</span>x<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">double</span> <span class="token function">cdf</span><span class="token punctuation">(</span><span class="token keyword">double</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span>  <span class="token punctuation">(</span>x<span class="token operator">*</span>Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>x<span class="token operator">*</span>x<span class="token punctuation">)</span><span class="token operator">+</span>Math<span class="token punctuation">.</span><span class="token function">asin</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span>Math<span class="token punctuation">.</span>PI<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Polar-coordinates"><a href="#Polar-coordinates" class="headerlink" title="Polar coordinates"></a>Polar coordinates</h3><p>The only downside of the cartesian coordinate approach is the binary search part. Because of it, the time complexity remains to be ( Op(1) ), though now space complexity is ( O(1) ).</p>
+<p>A natural thought would be to find a close-form inverse CDF. But how?</p>
+<p>In this subsection, we challenge the problem by another representation of circles.</p>
+<p>Let’s represent any point  in a circle by its angle to x-axis and distance to ( (0,0) ). Using the same normalization, the angle ( \theta ) and distance ( d ) should be transformed to ( (x,y) ) by<br>\[ x = \mathrm{cos}(\theta)d \]<br>\[ y = \mathrm{sin}(\theta)d \]<br>, where ( \theta \in [-\pi, \pi ] ) and ( d \in  [0, 1] )</p>
+<p>And the next equation holds on their support<br>\[  f(\theta, d) = f(x, y)|J| \]<br>, where<br>\[ J = \begin{bmatrix} \frac{\partial x}{\partial \theta} &amp; \frac{\partial y}{\partial \theta} \\ \frac{\partial x}{\partial d} &amp; \frac{\partial y}{\partial d} \end{bmatrix} \]</p>
+<p>and ( |\cdot| ) represents the determinant and absolute operation.</p>
+<p>Thus,<br>\[ |J| = | - \mathrm{sin}^2(\theta)d - \mathrm{cos}^2(\theta)d | = d \]</p>
+<p>Now we have<br>\[  f(\theta, d) = \frac{1}{\pi} \times d \]</p>
+<p>Like in previous subsection, ( f(\theta) ) follows a uniform distribution by contradiction, but the conditional distribution of ( d ) is simpler<br>\[ f(d|\theta)=2d=f(d) \]<br>Moreover, the CDF of ( d ) is<br>\[ F(d) = d^2 \]<br>, which just has a close-form inverse function.</p>
+<p>The idea further simplified, or eliminated, the binary search part.</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RandomPointInCircle</span> <span class="token punctuation">{</span>
+    <span class="token keyword">double</span> r<span class="token punctuation">,</span> xC<span class="token punctuation">,</span> yC<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">RandomPointInCircle</span><span class="token punctuation">(</span><span class="token keyword">double</span> radius<span class="token punctuation">,</span> <span class="token keyword">double</span> x_center<span class="token punctuation">,</span> <span class="token keyword">double</span> y_center<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        r<span class="token operator">=</span>radius<span class="token punctuation">;</span>
+        xC<span class="token operator">=</span>x_center<span class="token punctuation">;</span>
+        yC<span class="token operator">=</span>y_center<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">randPoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">double</span> theta<span class="token operator">=</span><span class="token number">2</span><span class="token operator">*</span>Math<span class="token punctuation">.</span>PI<span class="token operator">*</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> dist<span class="token operator">=</span>Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">double</span> x<span class="token operator">=</span>Math<span class="token punctuation">.</span><span class="token function">cos</span><span class="token punctuation">(</span>theta<span class="token punctuation">)</span><span class="token operator">*</span>dist<span class="token punctuation">,</span> y<span class="token operator">=</span>Math<span class="token punctuation">.</span><span class="token function">sin</span><span class="token punctuation">(</span>theta<span class="token punctuation">)</span><span class="token operator">*</span>dist<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">double</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>xC<span class="token operator">+</span>r<span class="token operator">*</span>x<span class="token punctuation">,</span> yC<span class="token operator">+</span>r<span class="token operator">*</span>y<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Finally we removed all the ( p ), namely stochasticity, from time complexity and space complexity. Dragon is defeated!</p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://yuhenghuang.github.io" rel="external nofollow noreferrer">Yuheng Huang</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://yuhenghuang.github.io/2020/02/random-point-in-circle/">https://yuhenghuang.github.io/2020/02/random-point-in-circle/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://yuhenghuang.github.io" target="_blank">Yuheng Huang</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Mathematics/">
+                                    <span class="chip bg-color">Mathematics</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2020/05/r-non-ascii-character-encoding/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="R non-ascii character encoding">
+                        
+                        <span class="card-title">R non-ascii character encoding</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Although English has been a universal language for decades, tasks in real work are still dealing with other languages, w
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-03
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/R/" class="post-category">
+                                    R
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Character-String/">
+                        <span class="chip bg-color">Character/String</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Current&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/02/random-point-in-circle/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Draw a random point in a circle uniformly">
+                        
+                        <span class="card-title">Draw a random point in a circle uniformly</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            IntroductionThis post is inspired by the problem from LeetCode, where one is asked to write a program to draw any point 
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Algorithm/" class="post-category">
+                                    Algorithm
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Mathematics/">
+                        <span class="chip bg-color">Mathematics</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('3'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="https://yuhenghuang.github.io" target="_blank">Yuheng Huang</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;Total traffic:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;
+            </span>
+						<script>
+								$(document).ready(function () {
+
+							var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+							var pvcountOffset = 80000;  // 初始化首次数据
+							var uvcountOffset = 20000;
+
+							function fixCount() {
+									if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+								$("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+								clearInterval(int);
+									}
+									if ($("#busuanzi_container_site_pv").css("display") != "none") {
+								$("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+								clearInterval(int); // 停止检测
+									}
+							}
+								});
+						</script>
+            
+            <br>
+            
+            <span id="sitetime">Loading running time...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "2";
+                    var startDate = "15";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "The site has run for " + diffDays + " days " + diffHours +
+                            " hours " + diffMinutes + " minutes " + diffSeconds + " seconds";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "The site has run for " + diffYears + " years " + diffDays + " days " + diffHours +
+                            " hours " + diffMinutes + " minutes " + diffSeconds + " seconds";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yuhenghuang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:kongqiota@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://www.linkedin.com/in/yuheng-huang-781aa1194/" class="tooltipped" target="_blank" data-tooltip="Check my linkedin: https://www.linkedin.com/in/yuheng-huang-781aa1194/" data-position="top" data-delay="50">
+        <i class="fab fa-linkedin"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158581917-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-158581917-1');
+</script>
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.5'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+    
+
+</body>
+
+</html>

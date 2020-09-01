@@ -1,0 +1,1118 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="Connect to AWS Redshift In R By ODBC, Iceberg Tip">
+    <meta name="description" content="docker imageFROM rocker/tidyverse
+This is a widely-used docker image of RStudio and Tidyverse. There are several variati">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Connect to AWS Redshift In R By ODBC | Iceberg Tip</title>
+    <link rel="icon" type="image/jpeg" href="/icon.jpeg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Iceberg Tip" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/icon.jpeg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Iceberg Tip</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/icon.jpeg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Iceberg Tip</div>
+        <div class="logo-desc">
+            
+            Record whatever interests me.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Connect to AWS Redshift In R By ODBC</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Redshift/">
+                                <span class="chip bg-color">Redshift</span>
+                            </a>
+                        
+                            <a href="/tags/Docker/">
+                                <span class="chip bg-color">Docker</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/R/" class="post-category">
+                                R
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2020-07-09
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    701
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                    4 Min
+                </div>
+                
+
+                
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="docker-image"><a href="#docker-image" class="headerlink" title="docker image"></a>docker image</h3><pre class="line-numbers language-Dockerfile"><code class="language-Dockerfile">FROM rocker/tidyverse<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>This is a widely-used docker image of RStudio and Tidyverse. There are several variations of the <em>rocker</em> images. Just choose the one that suits your needs most.</p>
+<h3 id="unixodbc"><a href="#unixodbc" class="headerlink" title="unixodbc"></a>unixodbc</h3><p>In <em>Dockerfile</em></p>
+<pre class="line-numbers language-Dockerfile"><code class="language-Dockerfile">RUN apt-get -y install unixodbc unixodbc-dev
+
+# update the LD_LIBRARY_PATH to contain libodbcinst.so
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Enter the docker to see further information of <code>unixodbc</code></p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># run this line</span>
+odbcinst -j
+
+<span class="token comment" spellcheck="true"># ...</span>
+DRIVERS<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>: /etc/odbcinst.ini
+SYSTEM DATA SOURCES: /etc/odbc.ini
+<span class="token comment" spellcheck="true"># ...</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>In later steps, we will put our <em>.ini</em> files to the right locations.</p>
+<p>Although it is possible to change the paths by setting environment variables, there is not much point doing that inside of a docker. See <em>page 35</em> of <strong>configuration guide</strong> on this <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/configure-odbc-connection.html" target="_blank" rel="noopener">site</a> for more details. To be specific, the environment variable <code>AMAZONREDSHIFTODBCINI</code> in official documents doesn’t work and is not fixed as of now.</p>
+<h3 id="Amazon-Redshift-odbc-driver-installation-settings"><a href="#Amazon-Redshift-odbc-driver-installation-settings" class="headerlink" title="Amazon Redshift odbc driver installation/settings"></a>Amazon Redshift odbc driver installation/settings</h3><p>You can setup those <em>.ini</em> files from scratch, or find the templates provided by <em>Amazon Redshift odbc driver</em> in the following paths</p>
+<ul>
+<li><em>/opt/amazon/redshiftodbc/Setup</em></li>
+<li><em>/opt/amazon/redshiftodbc/lib/64</em></li>
+</ul>
+<p>Here are some examples of those <em>.ini</em> files.</p>
+<p><em>odbcinst.ini</em></p>
+<pre class="line-numbers language-ini"><code class="language-ini"><span class="token selector">[ODBC Drivers]</span>
+Amazon Redshift (x86)<span class="token attr-value"><span class="token punctuation">=</span>Installed</span>
+Amazon Redshift (x64)<span class="token attr-value"><span class="token punctuation">=</span>Installed</span>
+
+<span class="token selector">[Amazon Redshift (x86)]</span>
+<span class="token constant">Description</span><span class="token attr-value"><span class="token punctuation">=</span>Amazon Redshift ODBC Driver (32-bit)</span>
+<span class="token constant">Driver</span><span class="token attr-value"><span class="token punctuation">=</span>/opt/amazon/redshiftodbc/lib/32/libamazonredshiftodbc32.so</span>
+
+<span class="token selector">[Amazon Redshift (x64)]</span>
+<span class="token constant">Description</span><span class="token attr-value"><span class="token punctuation">=</span>Any thing you like</span>
+# the driver path might change... see for yourself where it is.
+<span class="token constant">Driver</span><span class="token attr-value"><span class="token punctuation">=</span>/opt/amazon/redshiftodbc/lib/64/libamazonredshiftodbc64.so</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><em>odbc.ini</em></p>
+<pre class="line-numbers language-ini"><code class="language-ini"><span class="token selector">[ODBC Data Sources]</span>
+<span class="token constant">Amazon_Redshift_x32</span><span class="token attr-value"><span class="token punctuation">=</span>Amazon Redshift (x86)</span>
+<span class="token constant">Amazon_Redshift_x64</span><span class="token attr-value"><span class="token punctuation">=</span>Amazon Redshift (x64)</span>
+
+<span class="token selector">[Amazon Redshift (x86)]</span>
+<span class="token constant">Driver</span><span class="token attr-value"><span class="token punctuation">=</span>/opt/amazon/redshiftodbc/lib/32/libamazonredshiftodbc32.so</span>
+<span class="token constant">Host</span><span class="token attr-value"><span class="token punctuation">=</span>examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com</span>
+<span class="token constant">Port</span><span class="token attr-value"><span class="token punctuation">=</span>5932</span>
+<span class="token constant">Database</span><span class="token attr-value"><span class="token punctuation">=</span>dev</span>
+<span class="token constant">locale</span><span class="token attr-value"><span class="token punctuation">=</span>en-US</span>
+
+<span class="token selector">[Amazon Redshift (x64)]</span>
+<span class="token constant">Driver</span><span class="token attr-value"><span class="token punctuation">=</span>/opt/amazon/redshiftodbc/lib/64/libamazonredshiftodbc64.so</span>
+# Modify following settings
+
+# if access from docker to localhost
+# Server<span class="token attr-value"><span class="token punctuation">=</span>host.docker.internal</span>
+
+# Host and Server might be interchangeable
+<span class="token constant">Host</span><span class="token attr-value"><span class="token punctuation">=</span>examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com</span>
+<span class="token constant">Port</span><span class="token attr-value"><span class="token punctuation">=</span>5932</span>
+<span class="token constant">Database</span><span class="token attr-value"><span class="token punctuation">=</span>dev</span>
+<span class="token constant">locale</span><span class="token attr-value"><span class="token punctuation">=</span>en-US</span>
+
+# your username and password here
+<span class="token constant">UID</span><span class="token attr-value"><span class="token punctuation">=</span>[username]</span>
+<span class="token constant">PWD</span><span class="token attr-value"><span class="token punctuation">=</span>[password]</span>
+
+# Optional: These values can also be specified in the connection string.
+# sslmode<span class="token attr-value"><span class="token punctuation">=</span></span>
+# sslCertPath<span class="token attr-value"><span class="token punctuation">=</span></span>
+# KeepAlive<span class="token attr-value"><span class="token punctuation">=</span>1</span>
+# KeepAliveCount<span class="token attr-value"><span class="token punctuation">=</span>0</span>
+# KeepAliveTime<span class="token attr-value"><span class="token punctuation">=</span>0</span>
+# KeepAliveInterval<span class="token attr-value"><span class="token punctuation">=</span>0</span>
+# SingleRowMode<span class="token attr-value"><span class="token punctuation">=</span>0</span>
+# UseDeclareFetch<span class="token attr-value"><span class="token punctuation">=</span>0</span>
+# Fetch<span class="token attr-value"><span class="token punctuation">=</span>100</span>
+# UseMultipleStatements<span class="token attr-value"><span class="token punctuation">=</span>0</span>
+# UseUnicode<span class="token attr-value"><span class="token punctuation">=</span>1</span>
+# BoolsAsChar<span class="token attr-value"><span class="token punctuation">=</span>1</span>
+# TextAsLongVarchar<span class="token attr-value"><span class="token punctuation">=</span>1</span>
+# MaxVarchar<span class="token attr-value"><span class="token punctuation">=</span>65535</span>
+# MaxLongVarchar<span class="token attr-value"><span class="token punctuation">=</span>65535</span>
+# MaxBytea<span class="token attr-value"><span class="token punctuation">=</span>8190</span>
+# ProxyHost<span class="token attr-value"><span class="token punctuation">=</span></span>
+# ProxyPort<span class="token attr-value"><span class="token punctuation">=</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><em>amazon.redshiftodbc.ini</em></p>
+<pre class="line-numbers language-ini"><code class="language-ini"><span class="token constant">locale</span><span class="token attr-value"><span class="token punctuation">=</span>en-US</span>
+<span class="token constant">ErrorMessagesPath</span><span class="token attr-value"><span class="token punctuation">=</span>/opt/amazon/redshiftodbc/ErrorMessages</span>
+<span class="token constant">LogLevel</span><span class="token attr-value"><span class="token punctuation">=</span>0</span>
+<span class="token constant">LogPath</span><span class="token attr-value"><span class="token punctuation">=</span>[LogPath]</span>
+
+<span class="token constant">SwapFilePath</span><span class="token attr-value"><span class="token punctuation">=</span>/tmp</span>
+<span class="token constant">ODBCInstLib</span><span class="token attr-value"><span class="token punctuation">=</span>libodbcinst.so</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="RStudio-settings-file"><a href="#RStudio-settings-file" class="headerlink" title="RStudio settings file"></a>RStudio settings file</h3><p>If you already have <em>R</em> locally, you can find the same <em>rstudio-prefs.json</em> file in the same place in user directory.</p>
+<p>Example:</p>
+<p><em>~/.config/rstudio/rstudio-prefs.json</em></p>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"soft_wrap_r_files"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"editor_theme"</span><span class="token operator">:</span> <span class="token string">"Tomorrow Night"</span><span class="token punctuation">,</span>
+  <span class="token property">"font_size_points"</span><span class="token operator">:</span> <span class="token number">13</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Overview-of-the-Dockerfile-and-docker-compose-yml"><a href="#Overview-of-the-Dockerfile-and-docker-compose-yml" class="headerlink" title="Overview of the Dockerfile and docker-compose.yml"></a>Overview of the Dockerfile and docker-compose.yml</h3><pre class="line-numbers language-Dockerfile"><code class="language-Dockerfile">FROM rocker/tidyverse
+
+# assume you have already downloaded the driver
+COPY ./AmazonRedshiftODBC-1.x.x.xxxx-x.x86_64.deb ./
+RUN apt install ./AmazonRedshiftODBC-1.x.x.xxxx-x.x86_64.deb
+
+RUN apt-get update
+RUN apt-get -y install unixodbc unixodbc-dev
+
+# can also install other necessary packages here
+RUN R -e 'install.packages(c("odbc"))'
+
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu
+
+COPY ./odbc.ini /etc/
+COPY ./odbcinst.ini /etc/
+COPY ./amazon.redshiftodbc.ini /opt/amazon/redshiftodbc/lib/64/
+
+# assume we are using username "rstudio" to login to docker container
+# if you prefer other user names, just change those two lines
+RUN mkdir -p /home/rstudio/.config/rstudio/
+COPY ./rstudio-prefs.json /home/rstudio/.config/rstudio/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yml"><code class="language-yml">version: "3"
+services: 
+  rstudio:
+    build: .
+    ports: 
+      - "8787:8787"
+    environment: 
+      - ROOT=TRUE
+      # user name
+      - USERID=rstudio
+      # replace by your password
+      - PASSWORD=yourpassword
+    sysctls:
+      - net.ipv4.tcp_keepalive_time=200
+      - net.ipv4.tcp_keepalive_intvl=200
+      - net.ipv4.tcp_keepalive_probes=5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><sup>* <code>sysctls</code> options are to fix the timeout bug of docker in some cases. See references for more details.</sup></p>
+<h3 id="Connecting-from-R"><a href="#Connecting-from-R" class="headerlink" title="Connecting from R"></a>Connecting from R</h3><p>First start the docker container.</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># first time</span>
+docker-compose up
+
+<span class="token comment" spellcheck="true"># start container</span>
+docker-compose start
+
+<span class="token comment" spellcheck="true"># stop container</span>
+docker-compose stop
+
+<span class="token comment" spellcheck="true"># build after updating</span>
+docker-compose up --build<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Connect to RServer from <a href="localhost:8787">localhost:8787</a> in browser. Enter your username and password in <em>docker-compose.yml</em> file.</p>
+<pre class="line-numbers language-r"><code class="language-r"><span class="token comment" spellcheck="true"># top-right panel of RStudio will show the schemas and tables if succeeded</span>
+con <span class="token operator">&lt;-</span> DBI<span class="token operator">::</span>dbConnect<span class="token punctuation">(</span>odbc<span class="token operator">::</span>odbc<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"Amazon Redshift (x64)"</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># disconnect</span>
+DBI<span class="token operator">::</span>dbDisconnect<span class="token punctuation">(</span>con<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><p><a href="https://db.rstudio.com/databases/redshift/" target="_blank" rel="noopener">rstudio database</a></p>
+</li>
+<li><p><a href="https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-firewall-guidance.html" target="_blank" rel="noopener">TCP/IP timeout</a></p>
+</li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://yuhenghuang.github.io" rel="external nofollow noreferrer">Yuheng Huang</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://yuhenghuang.github.io/2020/07/r-connect-to-aws-redshift-by-odbc/">https://yuhenghuang.github.io/2020/07/r-connect-to-aws-redshift-by-odbc/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://yuhenghuang.github.io" target="_blank">Yuheng Huang</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Redshift/">
+                                    <span class="chip bg-color">Redshift</span>
+                                </a>
+                            
+                                <a href="/tags/Docker/">
+                                    <span class="chip bg-color">Docker</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2020/07/python-interact-with-r-session-through-stdio/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Working with R session interactively in Python">
+                        
+                        <span class="card-title">Working with R session interactively in Python</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            This post introduces a feasible way to work with R session interactively in Python with the help of Subprocess. Through 
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Python/" class="post-category">
+                                    Python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/IO/">
+                        <span class="chip bg-color">IO</span>
+                    </a>
+                    
+                    <a href="/tags/Subprocess/">
+                        <span class="chip bg-color">Subprocess</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/07/aws-upload-dataframe-object-to-s3-by-boto3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Upload DataFrame Object to AWS S3 Directly">
+                        
+                        <span class="card-title">Upload DataFrame Object to AWS S3 Directly</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            When uploading pandas dataframe to S3, there are times that it’s better to upload the data object directly than to tempo
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/AWS/" class="post-category">
+                                    AWS
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/S3/">
+                        <span class="chip bg-color">S3</span>
+                    </a>
+                    
+                    <a href="/tags/IO/">
+                        <span class="chip bg-color">IO</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('3'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="https://yuhenghuang.github.io" target="_blank">Yuheng Huang</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;Total traffic:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;
+            </span>
+						<script>
+								$(document).ready(function () {
+
+							var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+							var pvcountOffset = 80000;  // 初始化首次数据
+							var uvcountOffset = 20000;
+
+							function fixCount() {
+									if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+								$("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+								clearInterval(int);
+									}
+									if ($("#busuanzi_container_site_pv").css("display") != "none") {
+								$("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+								clearInterval(int); // 停止检测
+									}
+							}
+								});
+						</script>
+            
+            <br>
+            
+            <span id="sitetime">Loading running time...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "2";
+                    var startDate = "15";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "The site has run for " + diffDays + " days " + diffHours +
+                            " hours " + diffMinutes + " minutes " + diffSeconds + " seconds";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "The site has run for " + diffYears + " years " + diffDays + " days " + diffHours +
+                            " hours " + diffMinutes + " minutes " + diffSeconds + " seconds";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yuhenghuang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:kongqiota@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://www.linkedin.com/in/yuheng-huang-781aa1194/" class="tooltipped" target="_blank" data-tooltip="Check my linkedin: https://www.linkedin.com/in/yuheng-huang-781aa1194/" data-position="top" data-delay="50">
+        <i class="fab fa-linkedin"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158581917-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-158581917-1');
+</script>
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.5'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+    
+
+</body>
+
+</html>

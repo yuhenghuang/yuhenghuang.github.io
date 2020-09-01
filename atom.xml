@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Iceberg Tip</title>
+  
+  <subtitle>Yuheng&#39;s Blog</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://yuhenghuang.github.io/"/>
+  <updated>2020-08-29T23:00:20.080Z</updated>
+  <id>https://yuhenghuang.github.io/</id>
+  
+  <author>
+    <name>Yuheng Huang</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Clustered Standard Errors in Linear Regression Model</title>
+    <link href="https://yuhenghuang.github.io/2020/08/algorithm-clustered-standard-errors-of-linear-regression/"/>
+    <id>https://yuhenghuang.github.io/2020/08/algorithm-clustered-standard-errors-of-linear-regression/</id>
+    <published>2020-08-24T08:04:29.000Z</published>
+    <updated>2020-08-29T23:00:20.080Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Source code can be found &lt;a href=&quot;https://github.com/yuhenghuang/Rcpp/blob/master/ClusteredSE.cpp&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="https://yuhenghuang.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="Mathematics" scheme="https://yuhenghuang.github.io/tags/Mathematics/"/>
+    
+      <category term="Armadillo" scheme="https://yuhenghuang.github.io/tags/Armadillo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>An Object-Oriented List in R</title>
+    <link href="https://yuhenghuang.github.io/2020/08/r-object-oriented-list/"/>
+    <id>https://yuhenghuang.github.io/2020/08/r-object-oriented-list/</id>
+    <published>2020-08-01T05:16:34.000Z</published>
+    <updated>2020-08-29T23:00:20.080Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;In &lt;em&gt;R&lt;/em&gt;, basically operations follow the principle of so-called &lt;strong&gt;copy-on-modify semantics&lt;/strong&gt;. That means the
+        
+      
+    
+    </summary>
+    
+    
+      <category term="R" scheme="https://yuhenghuang.github.io/categories/R/"/>
+    
+    
+      <category term="Object-Oriented" scheme="https://yuhenghuang.github.io/tags/Object-Oriented/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mathematic Derivation of An Approach of Computing Multivariate Normal Density</title>
+    <link href="https://yuhenghuang.github.io/2020/07/algorithm-an-efficient-approach-of-computing-multivariate-normal-density/"/>
+    <id>https://yuhenghuang.github.io/2020/07/algorithm-an-efficient-approach-of-computing-multivariate-normal-density/</id>
+    <published>2020-07-29T11:42:43.000Z</published>
+    <updated>2020-08-29T23:00:20.080Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This post gives mathematic explanations for the algorithm on the &lt;a href=&quot;https://gallery.rcpp.org/articles/dmvnorm_arma/&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="https://yuhenghuang.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="Mathematics" scheme="https://yuhenghuang.github.io/tags/Mathematics/"/>
+    
+      <category term="Armadillo" scheme="https://yuhenghuang.github.io/tags/Armadillo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Working with R session interactively in Python</title>
+    <link href="https://yuhenghuang.github.io/2020/07/python-interact-with-r-session-through-stdio/"/>
+    <id>https://yuhenghuang.github.io/2020/07/python-interact-with-r-session-through-stdio/</id>
+    <published>2020-07-12T03:14:43.000Z</published>
+    <updated>2020-08-29T23:00:20.080Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This post introduces a feasible way to work with &lt;em&gt;R&lt;/em&gt; session interactively in &lt;em&gt;Python&lt;/em&gt; with the help of
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://yuhenghuang.github.io/categories/Python/"/>
+    
+    
+      <category term="IO" scheme="https://yuhenghuang.github.io/tags/IO/"/>
+    
+      <category term="Subprocess" scheme="https://yuhenghuang.github.io/tags/Subprocess/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Connect to AWS Redshift In R By ODBC</title>
+    <link href="https://yuhenghuang.github.io/2020/07/r-connect-to-aws-redshift-by-odbc/"/>
+    <id>https://yuhenghuang.github.io/2020/07/r-connect-to-aws-redshift-by-odbc/</id>
+    <published>2020-07-09T06:32:53.000Z</published>
+    <updated>2020-09-01T13:20:13.111Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;docker-image&quot;&gt;&lt;a href=&quot;#docker-image&quot; class=&quot;headerlink&quot; title=&quot;docker image&quot;&gt;&lt;/a&gt;docker image&lt;/h3&gt;&lt;pre class=&quot;line-numbers
+        
+      
+    
+    </summary>
+    
+    
+      <category term="R" scheme="https://yuhenghuang.github.io/categories/R/"/>
+    
+    
+      <category term="Redshift" scheme="https://yuhenghuang.github.io/tags/Redshift/"/>
+    
+      <category term="Docker" scheme="https://yuhenghuang.github.io/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Upload DataFrame Object to AWS S3 Directly</title>
+    <link href="https://yuhenghuang.github.io/2020/07/aws-upload-dataframe-object-to-s3-by-boto3/"/>
+    <id>https://yuhenghuang.github.io/2020/07/aws-upload-dataframe-object-to-s3-by-boto3/</id>
+    <published>2020-07-04T02:53:54.000Z</published>
+    <updated>2020-08-29T23:00:20.080Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;When uploading pandas dataframe to &lt;em&gt;S3&lt;/em&gt;, there are times that it’s better to upload the data object directly than to temporarily
+        
+      
+    
+    </summary>
+    
+    
+      <category term="AWS" scheme="https://yuhenghuang.github.io/categories/AWS/"/>
+    
+    
+      <category term="S3" scheme="https://yuhenghuang.github.io/tags/S3/"/>
+    
+      <category term="IO" scheme="https://yuhenghuang.github.io/tags/IO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>An Example of Library Multiprocessing in Python</title>
+    <link href="https://yuhenghuang.github.io/2020/06/python-multiprocessing-pool/"/>
+    <id>https://yuhenghuang.github.io/2020/06/python-multiprocessing-pool/</id>
+    <published>2020-06-27T01:38:31.000Z</published>
+    <updated>2020-08-29T23:00:20.080Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;By default, &lt;code&gt;python&lt;/code&gt; programs only utilize one CPU. This is not much of a problem for most cases, but when it comes to heavy
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://yuhenghuang.github.io/categories/Python/"/>
+    
+    
+      <category term="Parallel Computing" scheme="https://yuhenghuang.github.io/tags/Parallel-Computing/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Create ASW Spectrum From Local Parquet Files</title>
+    <link href="https://yuhenghuang.github.io/2020/06/aws-spectrum-from-local-parquet-files/"/>
+    <id>https://yuhenghuang.github.io/2020/06/aws-spectrum-from-local-parquet-files/</id>
+    <published>2020-06-27T00:14:51.000Z</published>
+    <updated>2020-08-29T23:00:20.080Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This post gives an example of uploading local parquet files to s3 and using &lt;em&gt;Spectrum&lt;/em&gt; to make the data accessible from
+        
+      
+    
+    </summary>
+    
+    
+      <category term="AWS" scheme="https://yuhenghuang.github.io/categories/AWS/"/>
+    
+    
+      <category term="Spectrum" scheme="https://yuhenghuang.github.io/tags/Spectrum/"/>
+    
+      <category term="Athena" scheme="https://yuhenghuang.github.io/tags/Athena/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Setup Environment On Remote Server, Updating</title>
+    <link href="https://yuhenghuang.github.io/2020/06/setup-environment-on-remote-server-updating/"/>
+    <id>https://yuhenghuang.github.io/2020/06/setup-environment-on-remote-server-updating/</id>
+    <published>2020-06-13T00:04:14.000Z</published>
+    <updated>2020-08-29T23:00:20.080Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This post record necessary documents for setting up environments on a remote server. The example here is &lt;strong&gt;Ubuntu
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Server" scheme="https://yuhenghuang.github.io/categories/Server/"/>
+    
+    
+      <category term="Environments" scheme="https://yuhenghuang.github.io/tags/Environments/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>R - Smooth Zigzag Graph</title>
+    <link href="https://yuhenghuang.github.io/2020/05/r-smooth-zigzag-graph/"/>
+    <id>https://yuhenghuang.github.io/2020/05/r-smooth-zigzag-graph/</id>
+    <published>2020-05-22T13:19:14.000Z</published>
+    <updated>2020-08-29T23:00:20.080Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Visualization shall be the most important part in the field of data science. Despite there are many positions for hard-core machine
+        
+      
+    
+    </summary>
+    
+    
+      <category term="R" scheme="https://yuhenghuang.github.io/categories/R/"/>
+    
+    
+      <category term="Tidyverse" scheme="https://yuhenghuang.github.io/tags/Tidyverse/"/>
+    
+      <category term="Interpolation" scheme="https://yuhenghuang.github.io/tags/Interpolation/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>R - dplyr::rename automation</title>
+    <link href="https://yuhenghuang.github.io/2020/05/r-dplyr-rename-automation/"/>
+    <id>https://yuhenghuang.github.io/2020/05/r-dplyr-rename-automation/</id>
+    <published>2020-05-16T01:31:47.000Z</published>
+    <updated>2020-08-29T23:00:20.080Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;The introduction of &lt;em&gt;tidyverse&lt;/em&gt; library has drastically changed the way of data processing in R. Its consistent syntaxes and
+        
+      
+    
+    </summary>
+    
+    
+      <category term="R" scheme="https://yuhenghuang.github.io/categories/R/"/>
+    
+    
+      <category term="Automation" scheme="https://yuhenghuang.github.io/tags/Automation/"/>
+    
+      <category term="Tidyverse" scheme="https://yuhenghuang.github.io/tags/Tidyverse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>R non-ascii character encoding</title>
+    <link href="https://yuhenghuang.github.io/2020/05/r-non-ascii-character-encoding/"/>
+    <id>https://yuhenghuang.github.io/2020/05/r-non-ascii-character-encoding/</id>
+    <published>2020-05-03T13:54:26.000Z</published>
+    <updated>2020-08-29T23:00:20.080Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Although English has been a universal language for decades, tasks in real work are still dealing with other languages, which have more
+        
+      
+    
+    </summary>
+    
+    
+      <category term="R" scheme="https://yuhenghuang.github.io/categories/R/"/>
+    
+    
+      <category term="Character/String" scheme="https://yuhenghuang.github.io/tags/Character-String/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Draw a random point in a circle uniformly</title>
+    <link href="https://yuhenghuang.github.io/2020/02/random-point-in-circle/"/>
+    <id>https://yuhenghuang.github.io/2020/02/random-point-in-circle/</id>
+    <published>2020-02-15T04:16:03.000Z</published>
+    <updated>2020-08-29T23:00:20.080Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;This post is inspired by the
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="https://yuhenghuang.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="Mathematics" scheme="https://yuhenghuang.github.io/tags/Mathematics/"/>
+    
+  </entry>
+  
+</feed>

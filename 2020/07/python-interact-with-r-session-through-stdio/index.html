@@ -1,0 +1,1270 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="Working with R session interactively in Python, Iceberg Tip">
+    <meta name="description" content="This post introduces a feasible way to work with R session interactively in Python with the help of Subprocess. Through ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Working with R session interactively in Python | Iceberg Tip</title>
+    <link rel="icon" type="image/jpeg" href="/icon.jpeg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Iceberg Tip" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/icon.jpeg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Iceberg Tip</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/icon.jpeg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Iceberg Tip</div>
+        <div class="logo-desc">
+            
+            Record whatever interests me.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Working with R session interactively in Python</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/IO/">
+                                <span class="chip bg-color">IO</span>
+                            </a>
+                        
+                            <a href="/tags/Subprocess/">
+                                <span class="chip bg-color">Subprocess</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Python/" class="post-category">
+                                Python
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2020-07-12
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    1.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                    8 Min
+                </div>
+                
+
+                
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>This post introduces a feasible way to work with <em>R</em> session interactively in <em>Python</em> with the help of <code>Subprocess</code>. Through <code>PIPE</code> of <code>stdin</code> and <code>stdout</code>, data and commands can be passed between the two process.</p>
+<h3 id="Toy-Example"><a href="#Toy-Example" class="headerlink" title="Toy Example"></a>Toy Example</h3><p>Input an integer in <em>Python</em> and return that integer + 1 from <em>R</em>.</p>
+<pre class="line-numbers language-r"><code class="language-r"><span class="token comment" spellcheck="true">#!/usr/bin/env Rscript</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">TRUE</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  var <span class="token operator">=</span> readLines<span class="token punctuation">(</span><span class="token string">"stdin"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  Sys.sleep<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+  write<span class="token punctuation">(</span>as.integer<span class="token punctuation">(</span>var<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> stdout<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python3</span>
+<span class="token keyword">from</span> subprocess <span class="token keyword">import</span> Popen<span class="token punctuation">,</span> PIPE
+
+rsession <span class="token operator">=</span> Popen<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Rscript'</span><span class="token punctuation">,</span> <span class="token string">'/path/to/script.R'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> stdin<span class="token operator">=</span>PIPE<span class="token punctuation">,</span> stdout<span class="token operator">=</span>PIPE<span class="token punctuation">,</span> stderr<span class="token operator">=</span>PIPE<span class="token punctuation">)</span>
+
+rsession<span class="token punctuation">.</span>stdin<span class="token punctuation">.</span>write<span class="token punctuation">(</span>b<span class="token string">'20\n'</span><span class="token punctuation">)</span>
+rsession<span class="token punctuation">.</span>stdin<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>rsession<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>readline<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Explanations line by line:</p>
+<ol>
+<li><p><em>R</em></p>
+<ul>
+<li><code>readLines(&quot;stdin&quot;, 1)</code><ul>
+<li>read the input from python.</li>
+<li>as R handles scalar and vector of length 1 softly, no other operations are needed.</li>
+<li><code>readline()</code> does not seem to work this way.</li>
+</ul>
+</li>
+<li><code>write(as.integer(var)+1, stdout())</code><ul>
+<li>write strings in R to <code>stdout()</code>.</li>
+<li>implicitly transform input to <em>bytes</em>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><em>Python</em></p>
+<ul>
+<li><code>rsession = Popen([&#39;Rscript&#39;, &#39;/path/to/script.R&#39;], stdin=PIPE, stdout=PIPE, stderr=PIPE)</code><ul>
+<li>start <em>R</em> subprocess.</li>
+<li>connect to the subprocess by <code>stdin</code>, <code>stdout</code> and <code>stderr</code>(optional) through <em>PIPE</em>.</li>
+</ul>
+</li>
+<li><code>rsession.stdin.write(b&#39;20\n&#39;)</code><ul>
+<li>only accept <em>bytes</em> input.</li>
+<li>ends with <code>&#39;\n&#39;</code> is a MUST.</li>
+</ul>
+</li>
+<li><code>rsession.stdin.flush()</code><ul>
+<li>flush the contents in <code>stdin</code></li>
+</ul>
+</li>
+<li><code>rsession.stdout.readline()</code><ul>
+<li>read the next <strong>ONE</strong> line</li>
+<li>returned type is <em>bytes</em> as well</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Elaborate-Example"><a href="#Elaborate-Example" class="headerlink" title="Elaborate Example"></a>Elaborate Example</h3><p>Pass arguments(parameters) to <em>R</em> session in <em>Python</em> and retrieve the resulting data frame.</p>
+<pre class="line-numbers language-r"><code class="language-r"><span class="token comment" spellcheck="true">#!/usr/bin/env Rscript</span>
+library<span class="token punctuation">(</span>tidyverse<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># For windows users, this line might solve the problem with non-English locale</span>
+<span class="token comment" spellcheck="true"># the stem of the potential problem is that windows does not seem to support locales like 'ja_JP.UTF-8'</span>
+<span class="token comment" spellcheck="true"># Sys.setlocale(locale = "english")</span>
+
+
+<span class="token comment" spellcheck="true"># Toy dataframe</span>
+df_raw <span class="token operator">&lt;-</span> tibble<span class="token punctuation">(</span>
+  x <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token string">'いろは'</span><span class="token punctuation">,</span><span class="token string">'やちよ'</span><span class="token punctuation">,</span><span class="token string">'鶴乃'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  y <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token number">3</span><span class="token punctuation">,</span>
+  z <span class="token operator">=</span> c<span class="token punctuation">(</span><span class="token string">'うい'</span><span class="token punctuation">,</span> <span class="token string">'みふゆ'</span><span class="token punctuation">,</span> <span class="token string">'万々歳'</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># function to output the dataframe to stdout</span>
+write_df <span class="token operator">&lt;-</span> <span class="token keyword">function</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true"># Begin Of DataFrame, works as an indicator for following dataframe lines</span>
+  write<span class="token punctuation">(</span><span class="token string">"BODF"</span><span class="token punctuation">,</span> stdout<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+  df <span class="token percent-operator operator">%>%</span>
+    format_tsv<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token percent-operator operator">%>%</span>
+    enc2utf8<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token percent-operator operator">%>%</span>
+    write<span class="token punctuation">(</span>.<span class="token punctuation">,</span> stdout<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true"># act like interactively</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">TRUE</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  arg_input <span class="token operator">=</span> readLines<span class="token punctuation">(</span><span class="token string">"stdin"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+  <span class="token comment" spellcheck="true"># filter rows</span>
+  df_temp <span class="token operator">&lt;-</span> df_raw <span class="token percent-operator operator">%>%</span>
+    filter<span class="token punctuation">(</span>x<span class="token operator">==</span>arg_input<span class="token punctuation">)</span>
+
+  write_df<span class="token punctuation">(</span>df_temp<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python3</span>
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+
+<span class="token keyword">from</span> subprocess <span class="token keyword">import</span> Popen<span class="token punctuation">,</span> PIPE
+<span class="token keyword">from</span> io <span class="token keyword">import</span> BytesIO
+
+<span class="token keyword">def</span> <span class="token function">read_df</span><span class="token punctuation">(</span>word<span class="token punctuation">,</span> sess<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token triple-quoted-string string">'''
+  Arguments:
+    word: can be arbitrary parameters passed to R session through stdin pipe
+    sess: R session running as a subprocess
+  '''</span>
+  word <span class="token operator">+=</span> <span class="token string">'\n'</span> <span class="token comment" spellcheck="true"># add end of line </span>
+  sess<span class="token punctuation">.</span>stdin<span class="token punctuation">.</span>write<span class="token punctuation">(</span>word<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># to bytes</span>
+  sess<span class="token punctuation">.</span>stdin<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token comment" spellcheck="true"># skip irrelevant lines</span>
+  <span class="token comment" spellcheck="true"># b'BODF\r\n' is defined in the R script</span>
+  line <span class="token operator">=</span> <span class="token string">'initializer'</span>
+  <span class="token keyword">while</span> line<span class="token operator">!=</span>b<span class="token string">'BODF\n'</span><span class="token punctuation">:</span>
+    line <span class="token operator">=</span> sess<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>readline<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token comment" spellcheck="true"># write all lines of dataframe to a buffer</span>
+  <span class="token comment" spellcheck="true"># data frame in lines of stdout from R session shall end with b'\r\n'</span>
+  buffer <span class="token operator">=</span> BytesIO<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">while</span> line<span class="token operator">!=</span>b<span class="token string">'\n'</span><span class="token punctuation">:</span>
+    line <span class="token operator">=</span> sess<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>readline<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    buffer<span class="token punctuation">.</span>write<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+
+  <span class="token comment" spellcheck="true"># reset the pointer of the buffer and read</span>
+  buffer<span class="token punctuation">.</span>seek<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+  df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> sep<span class="token operator">=</span><span class="token string">'\t'</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> df
+
+
+<span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">'__main__'</span><span class="token punctuation">:</span>
+  rsession <span class="token operator">=</span> Popen<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Rscript'</span><span class="token punctuation">,</span> <span class="token string">'/path/to/script.R'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> stdin<span class="token operator">=</span>PIPE<span class="token punctuation">,</span> stdout<span class="token operator">=</span>PIPE<span class="token punctuation">,</span> stderr<span class="token operator">=</span>PIPE<span class="token punctuation">)</span>
+  <span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>read_df<span class="token punctuation">(</span><span class="token string">'いろは'</span><span class="token punctuation">,</span> rsession<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>read_df<span class="token punctuation">(</span><span class="token string">'やちよ'</span><span class="token punctuation">,</span> rsession<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+  <span class="token keyword">finally</span><span class="token punctuation">:</span>
+    rsession<span class="token punctuation">.</span>kill<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol>
+<li><p><em>R</em></p>
+<ul>
+<li><code>format_tsv()</code><ul>
+<li>transform the data frame to a string</li>
+<li>other similar functions can be found in <a href="https://www.rdocumentation.org/packages/readr/versions/1.3.1/topics/format_delim" target="_blank" rel="noopener">official documents</a></li>
+</ul>
+</li>
+<li><code>enc2utf8()</code><ul>
+<li>change encoding of the string to <code>utf-8</code></li>
+<li>this line might be necessary under certain conditions</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><em>Python</em></p>
+<ul>
+<li><code>buffer = BytesIO()</code><ul>
+<li>create a file-like object to save the <em>bytes</em> input from <code>stdout</code></li>
+</ul>
+</li>
+<li><code>buffer.write(line)</code><ul>
+<li>save <code>stdout</code> line by line to buffer</li>
+</ul>
+</li>
+<li><code>buffer.seek(0)</code><ul>
+<li>reset the pointer to the beginning of buffer</li>
+<li>otherwise nothing can be read as the pointer is unidirectional</li>
+</ul>
+</li>
+<li><code>df = pd.read_csv(buffer, sep=&#39;\t&#39;, encoding=&#39;utf-8&#39;)</code><ul>
+<li><code>sep=&#39;\t&#39;</code> is corresponding to <code>format_tsv()</code> in <em>R</em></li>
+<li><code>encoding=&#39;utf-8&#39;</code> is necessary.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Monitor-stdout-from-R-by-Thread"><a href="#Monitor-stdout-from-R-by-Thread" class="headerlink" title="Monitor stdout from R by Thread"></a>Monitor <code>stdout</code> from R by <code>Thread</code></h3><p>To avoid the <em>deadlock</em> of the main thread, using another thread to listen to <code>stdout</code> is a good solution</p>
+<p><em>R</em> code does not change from previous section.</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python3</span>
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+
+<span class="token keyword">from</span> subprocess <span class="token keyword">import</span> Popen<span class="token punctuation">,</span> PIPE<span class="token punctuation">,</span> call
+<span class="token keyword">from</span> threading <span class="token keyword">import</span> Thread
+<span class="token keyword">from</span> queue <span class="token keyword">import</span> Queue
+<span class="token keyword">from</span> io <span class="token keyword">import</span> BytesIO
+
+<span class="token keyword">def</span> <span class="token function">read_stdout</span><span class="token punctuation">(</span>sess<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  flag_df <span class="token operator">=</span> <span class="token boolean">False</span>
+  <span class="token keyword">for</span> line <span class="token keyword">in</span> iter<span class="token punctuation">(</span>sess<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>readline<span class="token punctuation">,</span> b<span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> flag_df<span class="token punctuation">:</span>
+      <span class="token keyword">if</span> line<span class="token operator">==</span>b<span class="token string">'\n'</span><span class="token punctuation">:</span>
+        buffer<span class="token punctuation">.</span>seek<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+        df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> sep<span class="token operator">=</span><span class="token string">'\t'</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+        queue<span class="token punctuation">.</span>put<span class="token punctuation">(</span>df<span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">)</span>
+        flag_df <span class="token operator">=</span> <span class="token boolean">False</span>
+      <span class="token keyword">else</span><span class="token punctuation">:</span>
+        buffer<span class="token punctuation">.</span>write<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> line<span class="token operator">==</span>b<span class="token string">'BODF\n'</span><span class="token punctuation">:</span>
+      flag_df <span class="token operator">=</span> <span class="token boolean">True</span>
+      buffer <span class="token operator">=</span> BytesIO<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">read_df</span><span class="token punctuation">(</span>word<span class="token punctuation">,</span> sess<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  word <span class="token operator">+=</span> <span class="token string">'\n'</span> <span class="token comment" spellcheck="true"># add end of line </span>
+  sess<span class="token punctuation">.</span>stdin<span class="token punctuation">.</span>write<span class="token punctuation">(</span>word<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># to bytes</span>
+  sess<span class="token punctuation">.</span>stdin<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  df <span class="token operator">=</span> queue<span class="token punctuation">.</span>get<span class="token punctuation">(</span>timeout<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> df
+
+<span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">'__main__'</span><span class="token punctuation">:</span>
+  rsession <span class="token operator">=</span> Popen<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Rscript'</span><span class="token punctuation">,</span> <span class="token string">'/path/to/script.R'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> stdin<span class="token operator">=</span>PIPE<span class="token punctuation">,</span> stdout<span class="token operator">=</span>PIPE<span class="token punctuation">,</span> stderr<span class="token operator">=</span>PIPE<span class="token punctuation">)</span>
+
+  <span class="token comment" spellcheck="true"># global queue</span>
+  queue <span class="token operator">=</span> Queue<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token comment" spellcheck="true"># start thread to listen to rsession.stdout</span>
+  t <span class="token operator">=</span> Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>read_stdout<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>rsession<span class="token punctuation">,</span> <span class="token punctuation">)</span><span class="token punctuation">)</span>
+  t<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>read_df<span class="token punctuation">(</span><span class="token string">'いろは'</span><span class="token punctuation">,</span> rsession<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>read_df<span class="token punctuation">(</span><span class="token string">'やちよ'</span><span class="token punctuation">,</span> rsession<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+  <span class="token keyword">finally</span><span class="token punctuation">:</span>
+    rsession<span class="token punctuation">.</span>terminate<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># On windows try this.</span>
+    <span class="token comment" spellcheck="true"># call(['taskkill', '/F', '/T', '/PID', str(rsession.pid)])</span>
+
+  <span class="token comment" spellcheck="true"># can only join the thread when rsession is terminated</span>
+  <span class="token comment" spellcheck="true"># as stdout.readline() only returns b'' when the process is terminated.</span>
+  t<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>This enables more flexible control over the <code>stdout</code> stream and abstract the functionalities of each part better. Though more lines to handle exceptions are needed, the basic flow might be a good practice.</p>
+<h3 id="Class-version-of-the-previous-approach-using-Thread"><a href="#Class-version-of-the-previous-approach-using-Thread" class="headerlink" title="Class version of the previous approach using Thread"></a>Class version of the previous approach using <code>Thread</code></h3><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python3</span>
+<span class="token keyword">from</span> subprocess <span class="token keyword">import</span> Popen<span class="token punctuation">,</span> PIPE<span class="token punctuation">,</span> call
+<span class="token keyword">from</span> threading <span class="token keyword">import</span> Thread
+<span class="token keyword">from</span> queue <span class="token keyword">import</span> Queue<span class="token punctuation">,</span> Empty
+<span class="token keyword">from</span> io <span class="token keyword">import</span> BytesIO
+<span class="token keyword">from</span> functools <span class="token keyword">import</span> wraps
+
+<span class="token comment" spellcheck="true"># if you are using Jupyter to test</span>
+<span class="token keyword">from</span> IPython<span class="token punctuation">.</span>display <span class="token keyword">import</span> display
+
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+
+<span class="token keyword">def</span> <span class="token function">threaded</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  @wraps<span class="token punctuation">(</span>func<span class="token punctuation">)</span>
+  <span class="token keyword">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    thread <span class="token operator">=</span> Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>func<span class="token punctuation">,</span> args<span class="token operator">=</span>args<span class="token punctuation">,</span> kwargs<span class="token operator">=</span>kwargs<span class="token punctuation">)</span>
+    thread<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> thread
+  <span class="token keyword">return</span> wrapper
+
+<span class="token keyword">class</span> <span class="token class-name">Rsession</span><span class="token punctuation">:</span>
+  <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    self<span class="token punctuation">.</span>sess <span class="token operator">=</span> Popen<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Rscript'</span><span class="token punctuation">,</span> path<span class="token punctuation">]</span><span class="token punctuation">,</span> stdin<span class="token operator">=</span>PIPE<span class="token punctuation">,</span> stdout<span class="token operator">=</span>PIPE<span class="token punctuation">,</span> stderr<span class="token operator">=</span>PIPE<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>queue <span class="token operator">=</span> Queue<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># start thread</span>
+    self<span class="token punctuation">.</span>thread <span class="token operator">=</span> self<span class="token punctuation">.</span>read_stdout<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  @threaded
+  <span class="token keyword">def</span> <span class="token function">read_stdout</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    flag_df <span class="token operator">=</span> <span class="token boolean">False</span>
+    <span class="token keyword">for</span> line <span class="token keyword">in</span> iter<span class="token punctuation">(</span>self<span class="token punctuation">.</span>sess<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>readline<span class="token punctuation">,</span> b<span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">if</span> flag_df<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> line<span class="token operator">==</span>b<span class="token string">'\n'</span><span class="token punctuation">:</span>
+          buffer<span class="token punctuation">.</span>seek<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+          df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> sep<span class="token operator">=</span><span class="token string">'\t'</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+          self<span class="token punctuation">.</span>queue<span class="token punctuation">.</span>put<span class="token punctuation">(</span>df<span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">)</span>
+          flag_df <span class="token operator">=</span> <span class="token boolean">False</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+          buffer<span class="token punctuation">.</span>write<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+      <span class="token keyword">elif</span> line<span class="token operator">==</span>b<span class="token string">'BODF\n'</span><span class="token punctuation">:</span>
+        flag_df <span class="token operator">=</span> <span class="token boolean">True</span>
+        buffer <span class="token operator">=</span> BytesIO<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">def</span> <span class="token function">read_df</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> word<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    word <span class="token operator">+=</span> <span class="token string">'\n'</span> <span class="token comment" spellcheck="true"># add end of line </span>
+    self<span class="token punctuation">.</span>sess<span class="token punctuation">.</span>stdin<span class="token punctuation">.</span>write<span class="token punctuation">(</span>word<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># to bytes</span>
+    self<span class="token punctuation">.</span>sess<span class="token punctuation">.</span>stdin<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    df <span class="token operator">=</span> self<span class="token punctuation">.</span>queue<span class="token punctuation">.</span>get<span class="token punctuation">(</span>timeout<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> df
+
+  <span class="token keyword">def</span> <span class="token function">__enter__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> self
+
+  <span class="token keyword">def</span> <span class="token function">__exit__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> exc_type<span class="token punctuation">,</span> exc_val<span class="token punctuation">,</span> exc_tb<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    self<span class="token punctuation">.</span>sess<span class="token punctuation">.</span>terminate<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># call(['taskkill', '/F', '/T', '/PID', str(self.sess.pid)])</span>
+    self<span class="token punctuation">.</span>thread<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">'__main__'</span><span class="token punctuation">:</span>
+  <span class="token keyword">with</span> Rsession<span class="token punctuation">(</span><span class="token string">'/path/to/script.R'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> sess<span class="token punctuation">:</span>
+    display<span class="token punctuation">(</span>sess<span class="token punctuation">.</span>read_df<span class="token punctuation">(</span><span class="token string">'いろは'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> sess<span class="token punctuation">.</span>read_df<span class="token punctuation">(</span><span class="token string">'やちよ'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><ul>
+<li>Be careful of <strong>deadlock</strong></li>
+</ul>
+<p>The following lines will cause a deadlock if the execution of the process is not finished, e.g. using <code>while(TRUE)</code> to interact with <em>R</em> session. In that case, <em>Python</em> is waiting for <code>stdout</code> and <em>R</em> is waiting for <code>stdin</code>, and neither is really moving a single step forward.</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">for</span> line <span class="token keyword">in</span> sess<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token keyword">pass</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>In real world applications, <code>callbacks</code> are definitely necessary to avoid those situations. A practical strategy will be always reading <code>stdout</code> line by line and working with <code>callbacks</code> from <em>R</em> session to take the proper actions.</p>
+<ul>
+<li>Windows</li>
+</ul>
+<p>There are many subtleties in Windows. </p>
+<ol>
+<li><p>But the <em>encoding/decoding</em> is the most complicated one among them. Like in my case, <code>stdin</code> and <code>stdout</code> are handled properly in <code>utf-8</code>, whereas the <code>stderr</code> is <code>ShiftJIS</code> inheriting settings from powershell. If only Windows were to support locales like <code>ja_JP.UTF-8</code>…</p>
+</li>
+<li><p><code>rsession.terminate()</code> does not work… Try <code>subprocess.call([&#39;taskkill&#39;, &#39;/F&#39;, &#39;/T&#39;, &#39;/PID&#39;, str(rsession.pid)])</code> instead. Even after killing the subprocess, one should run either <code>rsession.terminate()</code>/<code>rsession.kill()</code> or <code>rsession.wait()</code> to let the process instance know it is terminated. Otherwise, those methods of checking the status of the process would not work properly.</p>
+</li>
+<li><p><code>End Of Line</code> from <code>stdout</code> on Windows is <em>‘\r\n’</em> rather than <em>‘\n’</em>.</p>
+</li>
+</ol>
+<p>Developing on a unix system would solve them naturally…</p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://yuhenghuang.github.io" rel="external nofollow noreferrer">Yuheng Huang</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://yuhenghuang.github.io/2020/07/python-interact-with-r-session-through-stdio/">https://yuhenghuang.github.io/2020/07/python-interact-with-r-session-through-stdio/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://yuhenghuang.github.io" target="_blank">Yuheng Huang</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/IO/">
+                                    <span class="chip bg-color">IO</span>
+                                </a>
+                            
+                                <a href="/tags/Subprocess/">
+                                    <span class="chip bg-color">Subprocess</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2020/07/algorithm-an-efficient-approach-of-computing-multivariate-normal-density/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Mathematic Derivation of An Approach of Computing Multivariate Normal Density">
+                        
+                        <span class="card-title">Mathematic Derivation of An Approach of Computing Multivariate Normal Density</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            This post gives mathematic explanations for the algorithm on the Rcpp example site.
+The density function for $\underset{
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-29
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Algorithm/" class="post-category">
+                                    Algorithm
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Mathematics/">
+                        <span class="chip bg-color">Mathematics</span>
+                    </a>
+                    
+                    <a href="/tags/Armadillo/">
+                        <span class="chip bg-color">Armadillo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/07/r-connect-to-aws-redshift-by-odbc/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Connect to AWS Redshift In R By ODBC">
+                        
+                        <span class="card-title">Connect to AWS Redshift In R By ODBC</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            docker imageFROM rocker/tidyverse
+This is a widely-used docker image of RStudio and Tidyverse. There are several variati
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/R/" class="post-category">
+                                    R
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Redshift/">
+                        <span class="chip bg-color">Redshift</span>
+                    </a>
+                    
+                    <a href="/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('3'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="https://yuhenghuang.github.io" target="_blank">Yuheng Huang</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;Total traffic:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;
+            </span>
+						<script>
+								$(document).ready(function () {
+
+							var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+							var pvcountOffset = 80000;  // 初始化首次数据
+							var uvcountOffset = 20000;
+
+							function fixCount() {
+									if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+								$("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+								clearInterval(int);
+									}
+									if ($("#busuanzi_container_site_pv").css("display") != "none") {
+								$("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+								clearInterval(int); // 停止检测
+									}
+							}
+								});
+						</script>
+            
+            <br>
+            
+            <span id="sitetime">Loading running time...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "2";
+                    var startDate = "15";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "The site has run for " + diffDays + " days " + diffHours +
+                            " hours " + diffMinutes + " minutes " + diffSeconds + " seconds";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "The site has run for " + diffYears + " years " + diffDays + " days " + diffHours +
+                            " hours " + diffMinutes + " minutes " + diffSeconds + " seconds";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yuhenghuang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:kongqiota@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://www.linkedin.com/in/yuheng-huang-781aa1194/" class="tooltipped" target="_blank" data-tooltip="Check my linkedin: https://www.linkedin.com/in/yuheng-huang-781aa1194/" data-position="top" data-delay="50">
+        <i class="fab fa-linkedin"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158581917-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-158581917-1');
+</script>
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.5'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+    
+
+</body>
+
+</html>
