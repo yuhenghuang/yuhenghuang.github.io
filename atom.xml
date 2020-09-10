@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuhenghuang.github.io/"/>
-  <updated>2020-08-29T23:00:20.080Z</updated>
+  <updated>2020-09-10T05:46:04.265Z</updated>
   <id>https://yuhenghuang.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Setup Ubuntu Focal Fossa Desktop</title>
+    <link href="https://yuhenghuang.github.io/2020/09/setup-local-ubuntu-focal-fossa/"/>
+    <id>https://yuhenghuang.github.io/2020/09/setup-local-ubuntu-focal-fossa/</id>
+    <published>2020-09-10T04:53:51.000Z</published>
+    <updated>2020-09-10T05:46:04.265Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;mount-bitlocker-locked-partition&quot;&gt;&lt;a href=&quot;#mount-bitlocker-locked-partition&quot; class=&quot;headerlink&quot; title=&quot;mount bitlocker locked
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="https://yuhenghuang.github.io/categories/Linux/"/>
+    
+    
+      <category term="Environments" scheme="https://yuhenghuang.github.io/tags/Environments/"/>
+    
+  </entry>
   
   <entry>
     <title>Clustered Standard Errors in Linear Regression Model</title>

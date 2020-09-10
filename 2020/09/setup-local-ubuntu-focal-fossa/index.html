@@ -4,11 +4,17 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Clustered Standard Errors in Linear Regression Model, Iceberg Tip">
-    <meta name="description" content="Source code can be found here.
-Problem SettingConsider a model of
-$$ y_i = x_i’\beta + \epsilon_i $$
-, where $y_i$ and $">
+    <meta name="keywords" content="Setup Ubuntu Focal Fossa Desktop, Iceberg Tip">
+    <meta name="description" content="mount bitlocker locked partition
+tool: dislocker
+
+references: ref1, ref2
+
+
+
+Install dislocker
+
+sudo apt install dislocke">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +22,7 @@ $$ y_i = x_i’\beta + \epsilon_i $$
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Clustered Standard Errors in Linear Regression Model | Iceberg Tip</title>
+    <title>Setup Ubuntu Focal Fossa Desktop | Iceberg Tip</title>
     <link rel="icon" type="image/jpeg" href="/icon.jpeg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -201,12 +207,12 @@ $$ y_i = x_i’\beta + \epsilon_i $$
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Clustered Standard Errors in Linear Regression Model</h1>
+                    <h1 class="description center-align post-title">Setup Ubuntu Focal Fossa Desktop</h1>
                 </div>
             </div>
         </div>
@@ -323,12 +329,8 @@ $$ y_i = x_i’\beta + \epsilon_i $$
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Mathematics/">
-                                <span class="chip bg-color">Mathematics</span>
-                            </a>
-                        
-                            <a href="/tags/Armadillo/">
-                                <span class="chip bg-color">Armadillo</span>
+                            <a href="/tags/Environments/">
+                                <span class="chip bg-color">Environments</span>
                             </a>
                         
                     </div>
@@ -339,8 +341,8 @@ $$ y_i = x_i’\beta + \epsilon_i $$
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Algorithm/" class="post-category">
-                                Algorithm
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
                             </a>
                         
                     </div>
@@ -352,7 +354,7 @@ $$ y_i = x_i’\beta + \epsilon_i $$
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-08-24
+                    2020-09-10
                 </div>
                 
 
@@ -361,7 +363,7 @@ $$ y_i = x_i’\beta + \epsilon_i $$
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    453
+                    342
                 </div>
                 
 
@@ -379,61 +381,110 @@ $$ y_i = x_i’\beta + \epsilon_i $$
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Source code can be found <a href="https://github.com/yuhenghuang/Rcpp/blob/master/ClusteredSE.cpp" target="_blank" rel="noopener">here</a>.</p>
-<h3 id="Problem-Setting"><a href="#Problem-Setting" class="headerlink" title="Problem Setting"></a>Problem Setting</h3><p>Consider a model of</p>
-<p>$$ y_i = x_i’\beta + \epsilon_i $$</p>
-<p>, where $y_i$ and $’\epsilon_i$ are scalars, $x_i$ and $\beta$ are both $k\times1$ vectors for $i = 1, 2, 3, …, n$.</p>
-<p>Other assumptions include</p>
-<ul>
-<li><p>$\mathbb{E}\left[\epsilon_i | x_i\right] = 0$</p>
+                <h3 id="mount-bitlocker-locked-partition"><a href="#mount-bitlocker-locked-partition" class="headerlink" title="mount bitlocker locked partition"></a>mount bitlocker locked partition</h3><ul>
+<li><p>tool: <a href="https://github.com/Aorimn/dislocker" target="_blank" rel="noopener">dislocker</a></p>
 </li>
-<li><p>$\mathcal{Var}\left(\epsilon_i\right) = \sigma^2$</p>
-</li>
-<li><p>$\mathcal{Cov}\left(\epsilon_i, \epsilon_j\right) = 0$ for $i \neq j$</p>
+<li><p>references: <a href="https://www.linuxuprising.com/2019/04/how-to-mount-bitlocker-encrypted.html" target="_blank" rel="noopener">ref1</a>, <a href="https://askubuntu.com/questions/617950/use-windows-bitlocker-encrypted-drive-on-ubuntu-14-04-lts" target="_blank" rel="noopener">ref2</a></p>
 </li>
 </ul>
-<p>Actually the previous assumptions indicate the <em>i.i.d</em> property of the error term $\epsilon_i$.</p>
-<p>All those assumptions are way too strong for real world data, thus we need to relax them to a certain extent. Introduce a new variable ${g_i}^n_{i=1}$ that indicates the group of observations.</p>
-<p>New assumptions are</p>
-<ul>
-<li><p>$\mathbb{E}\left[\epsilon_i | x_i\right] = 0$</p>
-</li>
-<li><p>$\mathcal{Var}\left(\epsilon_i\right) = \sigma_i^2$</p>
-</li>
-<li><p>$\mathcal{Cov}\left(\epsilon_i, \epsilon_j\right) = 0$ for $g_i \neq g_j$</p>
-</li>
-</ul>
-<p>The former homoskedasticity is now heteroscedasticity, and correlation of error terms within group is allowed.</p>
-<h3 id="Derivation-and-Inference"><a href="#Derivation-and-Inference" class="headerlink" title="Derivation and Inference"></a>Derivation and Inference</h3><p>For convenience, a matrix formula of the problem is presented as </p>
-<p>$$ \underset{n \times 1}{Y} = \underset{n \times k}{X}\beta + \underset{n \times 1}{\epsilon} $$ (1)</p>
-<p>with $\underset{n \times 1}{G}$.</p>
-<p>As the assumptions do not affect the result of OLS estimator, the estimate of $\beta$ is</p>
-<p>$$\hat{\beta} = (X’X)^{-1}X’Y$$ (2)</p>
-<p>and the estimate of $\epsilon$ is</p>
-<p>$$e = Y - X\hat{\beta}$$ (3)</p>
-<p>The variance of $\hat{\beta}$ can be shown to be</p>
-<p>$$\mathcal{Var}(\hat{\beta}) = (X’X)^{-1}X’\epsilon \epsilon’ X(X’X)^{-1}$$</p>
-<p>Using the assumption $\mathbb{E}\left[\epsilon_i | x_i\right] = 0$, we can derive that $\mathcal{Var}(\epsilon) = \epsilon \epsilon’$. Denote $\mathcal{Var}(\epsilon)$ as $\underset{n \times n}{\Omega}$,</p>
-<p>$$\mathcal{Var}(\hat{\beta}) = (X’X)^{-1}X’ \Omega X(X’X)^{-1}$$</p>
-<p>Applying the rest of assumption we can obtain</p>
-<p>$$\mathcal{Var}(\hat{\beta}) = \left(X’X\right)^{-1}\sum\limits^g\left[X_g’\epsilon_g\epsilon_g’X_g\right]\left(X’X\right)^{-1}$$</p>
-<p>, where $\underset{n_g \times k}{X_g}$ and $\underset{n_g \times 1}{\epsilon_g}$ are the $X$ and $\epsilon$ in group $g$, and $n_g$ is the sample size of the group.</p>
-<p>Since $\epsilon$ is unknown to us, in the computation it is replaced by its estimate $e$.</p>
-<h3 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h3><ol>
-<li><p>Precompute $(X’X)^{-1}$</p>
-</li>
-<li><p>Use bucket sort to construct $X_g$ and $\epsilon_g$ correctly in $O(2n)$ time.</p>
-<ul>
-<li>the first loop is to determine $n_g$ for the purpose of allocating places for $X_g$ and $\epsilon_g$</li>
-<li>the second loop put $X_g$ and $\epsilon_g$ in the allocated place correctly in terms of value and order.</li>
-</ul>
-</li>
-<li><p>Compute $\sum\limits^g\left[X_g’\epsilon_g\epsilon_g’X_g\right]$</p>
-</li>
-<li><p>Compute $\mathcal{Var}(\hat{\beta})$</p>
-</li>
+<ol>
+<li>Install <code>dislocker</code></li>
 </ol>
-<p>For more information, please see the source code link in the beginning of the post.</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> dislocker<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ol start="2">
+<li>Create two folders for decrypting and mounting partition</li>
+</ol>
+<p>e.g.</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mkdir</span> -p /media/bitlocker
+<span class="token function">sudo</span> <span class="token function">mkdir</span> -p /media/bitmount<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ol start="3">
+<li>Identify partition</li>
+</ol>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">fdisk</span> -l<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ol start="4">
+<li>Decrypt</li>
+</ol>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> dislocker -r -V /dev/sdaX -p1536987-000000-000000-000000-000000-000000-000000-000000 -- /media/bitlocker<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li><code>-r</code> means read-only. This option avoids many potential problems.</li>
+<li><code>/dev/sdaX</code> shall be replaced by your partition</li>
+<li><code>1536987-000000-000000-000000-000000-000000-000000-000000</code> shall be replaced by your recovery key.</li>
+</ul>
+<ol start="5">
+<li>Mount</li>
+</ol>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mount</span> -r -o loop /media/bitlocker/dislocker-file /media/bitmount<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ol start="6">
+<li>(Optional) Make a script</li>
+</ol>
+<p>For convenience…</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/sh</span>
+
+<span class="token function">sudo</span> dislocker -r -V /dev/sdaX -p1536987-000000-000000-000000-000000-000000-000000-000000 -- /media/bitlocker
+
+<span class="token function">sudo</span> <span class="token function">mount</span> -r -o loop /media/bitlocker/dislocker-file /media/bitmount
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="enable-three-finger-swipe-to-switch-workplace"><a href="#enable-three-finger-swipe-to-switch-workplace" class="headerlink" title="enable three-finger swipe to switch workplace"></a>enable three-finger swipe to switch workplace</h3><ul>
+<li><p>tool: <a href="https://github.com/bulletmark/libinput-gestures" target="_blank" rel="noopener">libinput-gestures</a></p>
+</li>
+<li><p>references: <a href="https://unix.stackexchange.com/questions/24330/how-can-i-turn-off-middle-mouse-button-paste-functionality-in-all-programs?answertab=votes#tab-top" target="_blank" rel="noopener">ref1</a></p>
+</li>
+</ul>
+<ol>
+<li>Install <code>libinput-gestures</code></li>
+</ol>
+<p>Follow the instructions in <code>github</code>.</p>
+<ol start="2">
+<li>Configuration</li>
+</ol>
+<p>Enable animation when switching workplace in <em>~/.config/libinput-gestures.conf</em></p>
+<pre class="line-numbers language-conf"><code class="language-conf"># gesture swipe up    _internal ws_up
+gesture swipe up    xdotool key super+Page_Down
+
+# gesture swipe down    _internal ws_down
+gesture swipe down    xdotool key super+Page_Up<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>note that <code>_internal ws_up</code> switches workplaces without animation. For more details please read the instructions in <code>github</code> or in the comments of the <em>.conf</em> file.</p>
+<ol start="3">
+<li>Disable unwanted middle-mouse-click-copy behavior</li>
+</ol>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> xbindkeys xsel xdotool
+
+<span class="token keyword">echo</span> -e <span class="token string">'"echo -n | xsel -n -i; pkill xbindkeys; xdotool click 2; xbindkeys"\nb:2 + Release'</span> <span class="token operator">>></span> ~/.xbindkeysrc
+
+<span class="token comment" spellcheck="true"># reload</span>
+xbindkeys -p
+
+<span class="token comment" spellcheck="true"># start</span>
+xbindkeys
+
+<span class="token comment" spellcheck="true"># stop</span>
+<span class="token function">pkill</span> xbindkeys
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>See <a href="https://unix.stackexchange.com/questions/24330/how-can-i-turn-off-middle-mouse-button-paste-functionality-in-all-programs?answertab=votes#tab-top" target="_blank" rel="noopener">ref1</a> for details.</p>
+<h3 id="enable-shortcut-for-deepwine-applications"><a href="#enable-shortcut-for-deepwine-applications" class="headerlink" title="enable shortcut for deepwine applications"></a>enable shortcut for deepwine applications</h3><ul>
+<li>tool: <code>xdottool</code></li>
+<li>reference: <a href="https://zhuanlan.zhihu.com/p/144286142" target="_blank" rel="noopener">ref1</a></li>
+</ul>
+<ol>
+<li>Install <code>xdottool</code></li>
+</ol>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> --no-install-recommends xdotool<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ol start="2">
+<li>Create script</li>
+</ol>
+<p>Example in reference named as <em>open_wechat.sh</em></p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/sh</span>
+
+xdotool key --window <span class="token variable"><span class="token variable">$(</span>xdotool search --limit 1 --all --pid <span class="token punctuation">$(</span>pgrep WeChat.exe<span class="token variable">)</span></span><span class="token punctuation">)</span> <span class="token string">"ctrl+alt+W"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>make the script executable by <code>chmod +x open_wechat.sh</code></p>
+<ol start="3">
+<li>Set the shortcut <code>Settings</code> -&gt; <code>Keyboard Shortcuts</code></li>
+</ol>
+<h3 id="onedrive"><a href="#onedrive" class="headerlink" title="onedrive"></a>onedrive</h3><ul>
+<li>tool: <a href="https://github.com/abraunegg/onedrive" target="_blank" rel="noopener">OneDrive Client for Linux</a></li>
+<li>references: <a href="https://github.com/abraunegg/onedrive/blob/master/docs/INSTALL.md" target="_blank" rel="noopener">installation</a>, <a href="https://github.com/abraunegg/onedrive/blob/master/docs/USAGE.md" target="_blank" rel="noopener">configuration</a></li>
+</ul>
+<p>It is recommended to run <code>onedrive</code> as a service and enable it at boot.</p>
 
             </div>
             <hr/>
@@ -459,7 +510,7 @@ $$ y_i = x_i’\beta + \epsilon_i $$
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yuhenghuang.github.io/2020/08/algorithm-clustered-standard-errors-of-linear-regression/">https://yuhenghuang.github.io/2020/08/algorithm-clustered-standard-errors-of-linear-regression/</a>
+                    <a href="https://yuhenghuang.github.io/2020/09/setup-local-ubuntu-focal-fossa/">https://yuhenghuang.github.io/2020/09/setup-local-ubuntu-focal-fossa/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -497,12 +548,8 @@ $$ y_i = x_i’\beta + \epsilon_i $$
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Mathematics/">
-                                    <span class="chip bg-color">Mathematics</span>
-                                </a>
-                            
-                                <a href="/tags/Armadillo/">
-                                    <span class="chip bg-color">Armadillo</span>
+                                <a href="/tags/Environments/">
+                                    <span class="chip bg-color">Environments</span>
                                 </a>
                             
                         </div>
@@ -543,9 +590,10 @@ $$ y_i = x_i’\beta + \epsilon_i $$
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2020/09/setup-local-ubuntu-focal-fossa/">
                     <div class="card-image">
@@ -572,9 +620,9 @@ sudo apt install dislocke
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -587,6 +635,7 @@ sudo apt install dislocke
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -605,31 +654,34 @@ sudo apt install dislocke
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/r-object-oriented-list/">
+                <a href="/2020/08/algorithm-clustered-standard-errors-of-linear-regression/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="An Object-Oriented List in R">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Clustered Standard Errors in Linear Regression Model">
                         
-                        <span class="card-title">An Object-Oriented List in R</span>
+                        <span class="card-title">Clustered Standard Errors in Linear Regression Model</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            In R, basically operations follow the principle of so-called copy-on-modify semantics. That means the operations modify 
+                            Source code can be found here.
+Problem SettingConsider a model of
+$$ y_i = x_i’\beta + \epsilon_i $$
+, where $y_i$ and $
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/R/" class="post-category">
-                                    R
+                            <a href="/categories/Algorithm/" class="post-category">
+                                    Algorithm
                                 </a>
                             
                             
@@ -639,8 +691,12 @@ sudo apt install dislocke
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Object-Oriented/">
-                        <span class="chip bg-color">Object-Oriented</span>
+                    <a href="/tags/Mathematics/">
+                        <span class="chip bg-color">Mathematics</span>
+                    </a>
+                    
+                    <a href="/tags/Armadillo/">
+                        <span class="chip bg-color">Armadillo</span>
                     </a>
                     
                 </div>
@@ -776,13 +832,6 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
 
     <footer class="page-footer bg-color">
