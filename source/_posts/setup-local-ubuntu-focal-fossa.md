@@ -1,5 +1,5 @@
 ---
-title: setup-local-ubuntu-focal-fossa
+title: Setup Ubuntu Focal Fossa Desktop
 top: false
 cover: false
 toc: true
