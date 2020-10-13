@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuhenghuang.github.io/"/>
-  <updated>2020-09-10T05:46:04.265Z</updated>
+  <updated>2020-10-13T09:28:41.282Z</updated>
   <id>https://yuhenghuang.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Thread Safety in cpp and Java</title>
+    <link href="https://yuhenghuang.github.io/2020/10/thread-synchronization-in-java-and-cpp/"/>
+    <id>https://yuhenghuang.github.io/2020/10/thread-synchronization-in-java-and-cpp/</id>
+    <published>2020-10-11T00:31:03.000Z</published>
+    <updated>2020-10-13T09:28:41.282Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;The post exhibits two examples of thread synchronization (or communication) in &lt;em&gt;cpp&lt;/em&gt; and &lt;em&gt;java&lt;/em&gt;, with comments on the
+        
+      
+    
+    </summary>
+    
+    
+      <category term="cpp" scheme="https://yuhenghuang.github.io/categories/cpp/"/>
+    
+    
+      <category term="Thread" scheme="https://yuhenghuang.github.io/tags/Thread/"/>
+    
+  </entry>
   
   <entry>
     <title>Setup Ubuntu Focal Fossa Desktop</title>

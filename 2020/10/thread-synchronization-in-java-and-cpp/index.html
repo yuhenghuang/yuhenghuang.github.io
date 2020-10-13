@@ -4,17 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Setup Ubuntu Focal Fossa Desktop, Iceberg Tip">
-    <meta name="description" content="mount bitlocker locked partition
-tool: dislocker
-
-references: ref1, ref2
-
-
-
-Install dislocker
-
-sudo apt install dislocke">
+    <meta name="keywords" content="Thread Safety in cpp and Java, Iceberg Tip">
+    <meta name="description" content="The post exhibits two examples of thread synchronization (or communication) in cpp and java, with comments on the basic ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +13,7 @@ sudo apt install dislocke">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Setup Ubuntu Focal Fossa Desktop | Iceberg Tip</title>
+    <title>Thread Safety in cpp and Java | Iceberg Tip</title>
     <link rel="icon" type="image/jpeg" href="/icon.jpeg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -207,12 +198,12 @@ sudo apt install dislocke">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Setup Ubuntu Focal Fossa Desktop</h1>
+                    <h1 class="description center-align post-title">Thread Safety in cpp and Java</h1>
                 </div>
             </div>
         </div>
@@ -329,8 +320,8 @@ sudo apt install dislocke">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Environments/">
-                                <span class="chip bg-color">Environments</span>
+                            <a href="/tags/Thread/">
+                                <span class="chip bg-color">Thread</span>
                             </a>
                         
                     </div>
@@ -341,8 +332,8 @@ sudo apt install dislocke">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Linux/" class="post-category">
-                                Linux
+                            <a href="/categories/cpp/" class="post-category">
+                                cpp
                             </a>
                         
                     </div>
@@ -354,7 +345,7 @@ sudo apt install dislocke">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-09-10
+                    2020-10-11
                 </div>
                 
 
@@ -363,14 +354,14 @@ sudo apt install dislocke">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    342
+                    652
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    2 Min
+                    4 Min
                 </div>
                 
 
@@ -381,110 +372,134 @@ sudo apt install dislocke">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="mount-bitlocker-locked-partition"><a href="#mount-bitlocker-locked-partition" class="headerlink" title="mount bitlocker locked partition"></a>mount bitlocker locked partition</h3><ul>
-<li><p>tool: <a href="https://github.com/Aorimn/dislocker" target="_blank" rel="noopener">dislocker</a></p>
-</li>
-<li><p>references: <a href="https://www.linuxuprising.com/2019/04/how-to-mount-bitlocker-encrypted.html" target="_blank" rel="noopener">ref1</a>, <a href="https://askubuntu.com/questions/617950/use-windows-bitlocker-encrypted-drive-on-ubuntu-14-04-lts" target="_blank" rel="noopener">ref2</a></p>
-</li>
-</ul>
-<ol>
-<li>Install <code>dislocker</code></li>
-</ol>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> dislocker<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ol start="2">
-<li>Create two folders for decrypting and mounting partition</li>
-</ol>
-<p>e.g.</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mkdir</span> -p /media/bitlocker
-<span class="token function">sudo</span> <span class="token function">mkdir</span> -p /media/bitmount<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ol start="3">
-<li>Identify partition</li>
-</ol>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">fdisk</span> -l<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ol start="4">
-<li>Decrypt</li>
-</ol>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> dislocker -r -V /dev/sdaX -p1536987-000000-000000-000000-000000-000000-000000-000000 -- /media/bitlocker<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <p>The post exhibits two examples of thread synchronization (or communication) in <em>cpp</em> and <em>java</em>, with comments on the basic concepts.</p>
+<h1 id="Thread-safe-Queue"><a href="#Thread-safe-Queue" class="headerlink" title="Thread-safe Queue"></a>Thread-safe Queue</h1><p>First thing comes the thread lock <code>std::mutex</code>. This lock cannot be copy or move to other objects thus it ensures only one thread shall own it.</p>
+<p><code>std::lock_guard</code> and <code>std::unique_lock</code> are wrappers of <code>std::mutex</code> which provide more functionalities of thread lock.</p>
+<p><code>std::condition_variable</code> controls whether a lock should be kept or released by the variants of <code>wait()</code> and <code>notify()</code> methods.</p>
+<p>The templated ThreadQueue has a <code>std::queue&lt;T&gt;</code>, <code>std::mutex</code>, <code>std::condition_variable</code> and optionally functor <code>Predicate</code>, end condition <code>T</code>.</p>
+<p>The basic workflow of is in a multithread environment,</p>
+<p>thread that calls <code>push</code> or <code>pop</code> first will take the <code>std::mutex</code> by a wrapper and prevent other threads from doing that. At this point, all other thread will be waiting at line <code>std::lock_guard&lt;std::mutex&gt;</code> or  <code>std::unique_lock&lt;std::mutex&gt;</code>.</p>
+<p>If the awaken thread is in <code>push</code>, it will execute to the end of the scope.</p>
+<p>If the awaken thread is in <code>pop</code>, the story will be different. After it took the thread lock, the coming <code>condition_variable</code> won’t let it pass with the lock unless</p>
 <ul>
-<li><code>-r</code> means read-only. This option avoids many potential problems.</li>
-<li><code>/dev/sdaX</code> shall be replaced by your partition</li>
-<li><code>1536987-000000-000000-000000-000000-000000-000000-000000</code> shall be replaced by your recovery key.</li>
+<li>Received notification from other threads (by <code>notify()</code> or <code>notify_all()</code>)</li>
+<li>(Optional) the condition is satisfied</li>
 </ul>
-<ol start="5">
-<li>Mount</li>
-</ol>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mount</span> -r -o loop /media/bitlocker/dislocker-file /media/bitmount<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ol start="6">
-<li>(Optional) Make a script</li>
-</ol>
-<p>For convenience…</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/sh</span>
+<p>In the example we check whether the <code>std::queue</code> is empty, but there can also be other types of condition like <code>timeout</code>.</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">
+<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> T<span class="token punctuation">,</span> <span class="token keyword">class</span> <span class="token class-name">Predicate</span><span class="token operator">=</span>std<span class="token operator">::</span>equal_to<span class="token operator">&lt;</span>T<span class="token operator">>></span>
+<span class="token keyword">class</span> <span class="token class-name">ThreadQueue</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span><span class="token operator">:</span>
+    std<span class="token operator">::</span>queue<span class="token operator">&lt;</span>T<span class="token operator">></span> q<span class="token punctuation">;</span>
+    std<span class="token operator">::</span>mutex m<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// only one thread can either uses push or pop.</span>
+    std<span class="token operator">::</span>condition_variable cv<span class="token punctuation">;</span>
+    T end_condition<span class="token punctuation">;</span>
+    Predicate pred<span class="token punctuation">;</span>
 
-<span class="token function">sudo</span> dislocker -r -V /dev/sdaX -p1536987-000000-000000-000000-000000-000000-000000-000000 -- /media/bitlocker
+  <span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token function">ThreadQueue</span><span class="token punctuation">(</span><span class="token keyword">const</span> T<span class="token operator">&amp;</span> ec<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token function">end_condition</span><span class="token punctuation">(</span>ec<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 
-<span class="token function">sudo</span> <span class="token function">mount</span> -r -o loop /media/bitlocker/dislocker-file /media/bitmount
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="enable-three-finger-swipe-to-switch-workplace"><a href="#enable-three-finger-swipe-to-switch-workplace" class="headerlink" title="enable three-finger swipe to switch workplace"></a>enable three-finger swipe to switch workplace</h3><ul>
-<li><p>tool: <a href="https://github.com/bulletmark/libinput-gestures" target="_blank" rel="noopener">libinput-gestures</a></p>
-</li>
-<li><p>references: <a href="https://unix.stackexchange.com/questions/24330/how-can-i-turn-off-middle-mouse-button-paste-functionality-in-all-programs?answertab=votes#tab-top" target="_blank" rel="noopener">ref1</a></p>
-</li>
+    <span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span>T<span class="token operator">&amp;&amp;</span> elem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      std<span class="token operator">::</span>lock_guard<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">></span> <span class="token function">lock</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      cv<span class="token punctuation">.</span><span class="token function">notify_one</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">bool</span> <span class="token function">pop</span><span class="token punctuation">(</span>T<span class="token operator">&amp;</span> elem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// own mutex</span>
+      std<span class="token operator">::</span>unique_lock<span class="token operator">&lt;</span>std<span class="token operator">::</span>mutex<span class="token operator">></span> <span class="token function">lock</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">/*
+        1. mutex released and execution suspended before awaking (being awakened)
+        2. Being awakened by notify_one() ( or notify_all() )
+        3. mutex reacquired, check the condition
+        4. If true -> move to next line, else -> go back to 1
+      */</span>
+      cv<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span>lock<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token operator">!</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment" spellcheck="true">// if is not necessary?</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        elem <span class="token operator">=</span> std<span class="token operator">::</span><span class="token function">move</span><span class="token punctuation">(</span>q<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">return</span> <span class="token function">pred</span><span class="token punctuation">(</span>elem<span class="token punctuation">,</span> end_condition<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token boolean">false</span> <span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>The <code>pop</code> method returning <code>bool</code> instead of <code>T</code> has to merits.</p>
+<ul>
+<li>Avoid potential unnecessary copies (even compiler will optimize some of those implicitly)</li>
+<li>Inform the caller of the method</li>
 </ul>
-<ol>
-<li>Install <code>libinput-gestures</code></li>
-</ol>
-<p>Follow the instructions in <code>github</code>.</p>
-<ol start="2">
-<li>Configuration</li>
-</ol>
-<p>Enable animation when switching workplace in <em>~/.config/libinput-gestures.conf</em></p>
-<pre class="line-numbers language-conf"><code class="language-conf"># gesture swipe up    _internal ws_up
-gesture swipe up    xdotool key super+Page_Down
+<p>Like in the implementation, the <code>pop</code> method will return <code>false</code> if the popped element is the end_condition we defined at the time of construction. The program can be designed to be more flexible.</p>
+<p>We also need to write the specialization of <code>std::equal_to&lt;T&gt;</code> if <code>T::operator==</code> is not defined.<br>The example using <code>std::string</code> looks like</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">
+<span class="token keyword">namespace</span> std <span class="token punctuation">{</span>
+  <span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token operator">></span>
+  <span class="token keyword">struct</span> equal_to<span class="token operator">&lt;</span>string<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">bool</span> <span class="token keyword">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> lhs<span class="token punctuation">,</span> <span class="token keyword">const</span> string<span class="token operator">&amp;</span> rhs<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> lhs<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span>rhs<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Print-Odd-Even-Number-in-Turn"><a href="#Print-Odd-Even-Number-in-Turn" class="headerlink" title="Print Odd-Even Number in Turn"></a>Print Odd-Even Number in Turn</h3><p>In <em>Java</em>, the thread lock is already defined in the <code>Object</code> class, as well as <code>notify()</code> and <code>wait()</code> method.</p>
+<p>The scope that is expected to be thread safe is indicated by <em>Java</em> keyword <code>synchronized(Object obj)</code>.</p>
+<p>Following code prints odd and even numbers by two threads in turn.</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">PrintThread</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> rem<span class="token punctuation">;</span>
+  Number num<span class="token punctuation">;</span>
 
-# gesture swipe down    _internal ws_down
-gesture swipe down    xdotool key super+Page_Up<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>note that <code>_internal ws_up</code> switches workplaces without animation. For more details please read the instructions in <code>github</code> or in the comments of the <em>.conf</em> file.</p>
-<ol start="3">
-<li>Disable unwanted middle-mouse-click-copy behavior</li>
-</ol>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> xbindkeys xsel xdotool
+  <span class="token function">PrintThread</span><span class="token punctuation">(</span>Number n<span class="token punctuation">,</span> <span class="token keyword">boolean</span> is_even<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    num <span class="token operator">=</span> n<span class="token punctuation">;</span>
+    rem <span class="token operator">=</span> is_even <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-<span class="token keyword">echo</span> -e <span class="token string">'"echo -n | xsel -n -i; pkill xbindkeys; xdotool click 2; xbindkeys"\nb:2 + Release'</span> <span class="token operator">>></span> ~/.xbindkeysrc
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>num<span class="token punctuation">.</span>i<span class="token operator">&lt;</span>num<span class="token punctuation">.</span>max<span class="token punctuation">)</span> 
+      num<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>rem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true"># reload</span>
-xbindkeys -p
+<span class="token keyword">class</span> <span class="token class-name">Number</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Number obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Number</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token comment" spellcheck="true"># start</span>
-xbindkeys
+    Thread t1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">PrintThread</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    t1<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"t1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token comment" spellcheck="true"># stop</span>
-<span class="token function">pkill</span> xbindkeys
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>See <a href="https://unix.stackexchange.com/questions/24330/how-can-i-turn-off-middle-mouse-button-paste-functionality-in-all-programs?answertab=votes#tab-top" target="_blank" rel="noopener">ref1</a> for details.</p>
-<h3 id="enable-shortcut-for-deepwine-applications"><a href="#enable-shortcut-for-deepwine-applications" class="headerlink" title="enable shortcut for deepwine applications"></a>enable shortcut for deepwine applications</h3><ul>
-<li>tool: <code>xdottool</code></li>
-<li>reference: <a href="https://zhuanlan.zhihu.com/p/144286142" target="_blank" rel="noopener">ref1</a></li>
-</ul>
-<ol>
-<li>Install <code>xdottool</code></li>
-</ol>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> --no-install-recommends xdotool<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ol start="2">
-<li>Create script</li>
-</ol>
-<p>Example in reference named as <em>open_wechat.sh</em></p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/sh</span>
+    Thread t2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">PrintThread</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    t2<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"t2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-xdotool key --window <span class="token variable"><span class="token variable">$(</span>xdotool search --limit 1 --all --pid <span class="token punctuation">$(</span>pgrep WeChat.exe<span class="token variable">)</span></span><span class="token punctuation">)</span> <span class="token string">"ctrl+alt+W"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>make the script executable by <code>chmod +x open_wechat.sh</code></p>
-<ol start="3">
-<li>Set the shortcut <code>Settings</code> -&gt; <code>Keyboard Shortcuts</code></li>
-</ol>
-<h3 id="onedrive"><a href="#onedrive" class="headerlink" title="onedrive"></a>onedrive</h3><ul>
-<li>tool: <a href="https://github.com/abraunegg/onedrive" target="_blank" rel="noopener">OneDrive Client for Linux</a></li>
-<li>references: <a href="https://github.com/abraunegg/onedrive/blob/master/docs/INSTALL.md" target="_blank" rel="noopener">installation</a>, <a href="https://github.com/abraunegg/onedrive/blob/master/docs/USAGE.md" target="_blank" rel="noopener">configuration</a></li>
-</ul>
-<p>It is recommended to run <code>onedrive</code> as a service and enable it at boot.</p>
+    t1<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    t2<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">int</span> i<span class="token punctuation">,</span> max<span class="token punctuation">;</span>
+
+  <span class="token function">Number</span><span class="token punctuation">(</span><span class="token keyword">int</span> m<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    max <span class="token operator">=</span> m<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword">int</span> rem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> rem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+          <span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> 
+        <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" -> "</span> <span class="token operator">+</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -510,7 +525,7 @@ xdotool key --window <span class="token variable"><span class="token variable">$
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yuhenghuang.github.io/2020/09/setup-local-ubuntu-focal-fossa/">https://yuhenghuang.github.io/2020/09/setup-local-ubuntu-focal-fossa/</a>
+                    <a href="https://yuhenghuang.github.io/2020/10/thread-synchronization-in-java-and-cpp/">https://yuhenghuang.github.io/2020/10/thread-synchronization-in-java-and-cpp/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -548,8 +563,8 @@ xdotool key --window <span class="token variable"><span class="token variable">$
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Environments/">
-                                    <span class="chip bg-color">Environments</span>
+                                <a href="/tags/Thread/">
+                                    <span class="chip bg-color">Thread</span>
                                 </a>
                             
                         </div>
@@ -590,9 +605,10 @@ xdotool key --window <span class="token variable"><span class="token variable">$
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2020/10/thread-synchronization-in-java-and-cpp/">
                     <div class="card-image">
@@ -610,9 +626,9 @@ xdotool key --window <span class="token variable"><span class="token variable">$
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -625,6 +641,7 @@ xdotool key --window <span class="token variable"><span class="token variable">$
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -643,34 +660,40 @@ xdotool key --window <span class="token variable"><span class="token variable">$
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/algorithm-clustered-standard-errors-of-linear-regression/">
+                <a href="/2020/09/setup-local-ubuntu-focal-fossa/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Clustered Standard Errors in Linear Regression Model">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Setup Ubuntu Focal Fossa Desktop">
                         
-                        <span class="card-title">Clustered Standard Errors in Linear Regression Model</span>
+                        <span class="card-title">Setup Ubuntu Focal Fossa Desktop</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Source code can be found here.
-Problem SettingConsider a model of
-$$ y_i = x_i’\beta + \epsilon_i $$
-, where $y_i$ and $
+                            mount bitlocker locked partition
+tool: dislocker
+
+references: ref1, ref2
+
+
+
+Install dislocker
+
+sudo apt install dislocke
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-10
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Algorithm/" class="post-category">
-                                    Algorithm
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
@@ -680,12 +703,8 @@ $$ y_i = x_i’\beta + \epsilon_i $$
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Mathematics/">
-                        <span class="chip bg-color">Mathematics</span>
-                    </a>
-                    
-                    <a href="/tags/Armadillo/">
-                        <span class="chip bg-color">Armadillo</span>
+                    <a href="/tags/Environments/">
+                        <span class="chip bg-color">Environments</span>
                     </a>
                     
                 </div>
