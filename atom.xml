@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuhenghuang.github.io/"/>
-  <updated>2020-10-13T09:28:41.282Z</updated>
+  <updated>2020-10-17T10:03:11.309Z</updated>
   <id>https://yuhenghuang.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>A Universal Validator for Rcpp Module</title>
+    <link href="https://yuhenghuang.github.io/2020/10/cpp-universal-validator-for-rcpp-module/"/>
+    <id>https://yuhenghuang.github.io/2020/10/cpp-universal-validator-for-rcpp-module/</id>
+    <published>2020-10-17T09:05:49.000Z</published>
+    <updated>2020-10-17T10:03:11.309Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;code&gt;Rcpp&lt;/code&gt; module is is a useful interface to access/operate &lt;em&gt;cpp&lt;/em&gt; classes from &lt;em&gt;R&lt;/em&gt;. This &lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="cpp" scheme="https://yuhenghuang.github.io/categories/cpp/"/>
+    
+    
+      <category term="Rcpp" scheme="https://yuhenghuang.github.io/tags/Rcpp/"/>
+    
+  </entry>
   
   <entry>
     <title>Thread Safety in cpp and Java</title>
