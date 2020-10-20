@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuhenghuang.github.io/"/>
-  <updated>2020-10-17T10:03:11.309Z</updated>
+  <updated>2020-10-20T12:29:17.163Z</updated>
   <id>https://yuhenghuang.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Setup MLPACK3 For Rcpp on Focal Fossa</title>
+    <link href="https://yuhenghuang.github.io/2020/10/cpp-setup-mlpack3-for-rcpp-on-focal-fossa/"/>
+    <id>https://yuhenghuang.github.io/2020/10/cpp-setup-mlpack3-for-rcpp-on-focal-fossa/</id>
+    <published>2020-10-20T11:02:31.000Z</published>
+    <updated>2020-10-20T12:29:17.163Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Since 20.04, Ubuntu’s official library has introduced binary version of a &lt;em&gt;cpp&lt;/em&gt; machine learning library, &lt;code&gt;MLPACK&lt;/code&gt;.
+        
+      
+    
+    </summary>
+    
+    
+      <category term="cpp" scheme="https://yuhenghuang.github.io/categories/cpp/"/>
+    
+    
+      <category term="Rcpp" scheme="https://yuhenghuang.github.io/tags/Rcpp/"/>
+    
+      <category term="MLPACK" scheme="https://yuhenghuang.github.io/tags/MLPACK/"/>
+    
+  </entry>
   
   <entry>
     <title>A Universal Validator for Rcpp Module</title>
