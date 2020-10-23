@@ -354,14 +354,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    884
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    5 Min
+                    6 Min
                 </div>
                 
 
@@ -527,6 +527,31 @@ example_iii$add()
   <span class="token punctuation">.</span><span class="token function">method</span><span class="token punctuation">(</span><span class="token string">"add"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>Example<span class="token operator">::</span>add<span class="token punctuation">)</span>
   <span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Pointer-Version"><a href="#Pointer-Version" class="headerlink" title="Pointer Version"></a>Pointer Version</h3><p>We need <code>args+nargs</code> to mark the end of arguments because the <code>SEXP</code> array is initialized like</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">define</span> MAX_ARGS 65</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> UNPACK_EXTERNAL_ARGS(__CARGS__,__P__)    \
+SEXP __CARGS__[MAX_ARGS]; \
+</span><span class="token comment" spellcheck="true">// ...</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>The array contains the addresses, <code>SEXP</code>, of objects instantiated by default constructors. Therefore <code>args+nargs</code> is a valid address (not <code>nullptr</code>) of a non-null object (not <code>R_NilValue</code>).</p>
+<p>If there is a way to make out default constructed <code>SEXPREC</code>, the validator can be further simplified.</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> Types<span class="token operator">></span>
+<span class="token keyword">bool</span> <span class="token function">universal_validator</span><span class="token punctuation">(</span>SEXP<span class="token operator">*</span> args<span class="token punctuation">,</span> <span class="token keyword">int</span> nargs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> universal_validator<span class="token operator">&lt;</span>Types<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">></span><span class="token punctuation">(</span>args<span class="token punctuation">,</span> args<span class="token operator">+</span>nargs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> T <span class="token operator">=</span> <span class="token keyword">void</span><span class="token punctuation">,</span> <span class="token keyword">typename</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> Types<span class="token operator">></span>
+<span class="token keyword">bool</span> <span class="token function">universal_validator</span><span class="token punctuation">(</span>SEXP<span class="token operator">*</span> args<span class="token punctuation">,</span> SEXP<span class="token operator">*</span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>args<span class="token operator">==</span>end<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword">typedef</span> <span class="token keyword">typename</span> Rcpp<span class="token operator">::</span>traits<span class="token operator">::</span>remove_const_and_reference<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">::</span>type _Tp<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> Rcpp<span class="token operator">::</span>is<span class="token operator">&lt;</span>_Tp<span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> universal_validator<span class="token operator">&lt;</span>Types<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">></span><span class="token punctuation">(</span>args<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token operator">></span>
+<span class="token keyword">bool</span> <span class="token function">universal_validator</span><span class="token punctuation">(</span>SEXP<span class="token operator">*</span> args<span class="token punctuation">,</span> SEXP<span class="token operator">*</span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> args <span class="token operator">==</span> end<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
