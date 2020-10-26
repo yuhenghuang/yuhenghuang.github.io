@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuhenghuang.github.io/"/>
-  <updated>2020-10-20T12:29:17.163Z</updated>
+  <updated>2020-10-26T12:52:48.021Z</updated>
   <id>https://yuhenghuang.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>How to Run Leetcode Problem Locally By One Line</title>
+    <link href="https://yuhenghuang.github.io/2020/10/cpp-run-leetcode-problem-locally-by-one-line/"/>
+    <id>https://yuhenghuang.github.io/2020/10/cpp-run-leetcode-problem-locally-by-one-line/</id>
+    <published>2020-10-26T12:16:40.000Z</published>
+    <updated>2020-10-26T12:52:48.021Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This post introduce a way to run leetcode problem by one line in &lt;em&gt;cpp&lt;/em&gt;, with all the process wrapped up. &lt;code&gt;c++14&lt;/code&gt; and
+        
+      
+    
+    </summary>
+    
+    
+      <category term="cpp" scheme="https://yuhenghuang.github.io/categories/cpp/"/>
+    
+    
+      <category term="Tuple" scheme="https://yuhenghuang.github.io/tags/Tuple/"/>
+    
+      <category term="Variadic Template" scheme="https://yuhenghuang.github.io/tags/Variadic-Template/"/>
+    
+  </entry>
   
   <entry>
     <title>Setup MLPACK3 For Rcpp on Focal Fossa</title>
