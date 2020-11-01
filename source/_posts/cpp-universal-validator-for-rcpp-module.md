@@ -211,3 +211,41 @@ RCPP_MODULE(example_module) {
   ;
 }
 ```
+
+
+### Pointer Version
+
+We need `args+nargs` to mark the end of arguments because the `SEXP` array is initialized like
+
+```cpp
+#define MAX_ARGS 65
+#define UNPACK_EXTERNAL_ARGS(__CARGS__,__P__)    \
+SEXP __CARGS__[MAX_ARGS]; \
+// ...
+```
+
+The array contains the addresses, `SEXP`, of objects instantiated by default constructors. Therefore `args+nargs` is a valid address (not `nullptr`) of a non-null object (not `R_NilValue`).
+
+If there is a way to make out default constructed `SEXPREC`, the validator can be further simplified.
+
+
+```cpp
+template <typename... Types>
+bool universal_validator(SEXP* args, int nargs) {
+  return universal_validator<Types...>(args, args+nargs);
+}
+
+
+template <typename T = void, typename... Types>
+bool universal_validator(SEXP* args, SEXP* end) {
+  if (args==end) return false;
+  typedef typename Rcpp::traits::remove_const_and_reference<T>::type _Tp;
+  return Rcpp::is<_Tp>(*args) && universal_validator<Types...>(args+1, end);
+}
+
+
+template <>
+bool universal_validator(SEXP* args, SEXP* end) {
+  return args == end;
+}
+```
