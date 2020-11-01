@@ -358,14 +358,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    634
+                    648
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    3 Min
+                    4 Min
                 </div>
                 
 
@@ -433,7 +433,7 @@
 
 <span class="token comment" spellcheck="true">// run the function</span>
 <span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">,</span> <span class="token keyword">typename</span> Ret<span class="token punctuation">,</span> <span class="token keyword">typename</span> Tuple<span class="token punctuation">,</span> <span class="token keyword">typename</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> Types<span class="token punctuation">,</span> std<span class="token operator">::</span>size_t<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> Is<span class="token operator">></span>
-<span class="token keyword">void</span> 
+std<span class="token operator">::</span>enable_if_t<span class="token operator">&lt;</span><span class="token operator">!</span>std<span class="token operator">::</span>is_void<span class="token operator">&lt;</span>Ret<span class="token operator">></span><span class="token operator">::</span>value<span class="token operator">></span> 
 <span class="token function">ufunc_call</span><span class="token punctuation">(</span><span class="token function">Ret</span> <span class="token punctuation">(</span>Solution<span class="token operator">::</span><span class="token operator">*</span>fn<span class="token punctuation">)</span><span class="token punctuation">(</span>Types<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Tuple<span class="token operator">&amp;</span> params<span class="token punctuation">,</span> std<span class="token operator">::</span>index_sequence<span class="token operator">&lt;</span>Is<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 
@@ -471,7 +471,7 @@ std<span class="token operator">::</span>enable_if_t<span class="token operator"
 <h3 id="Run"><a href="#Run" class="headerlink" title="Run"></a>Run</h3><pre class="line-numbers language-cpp"><code class="language-cpp">
 <span class="token comment" spellcheck="true">// print return value</span>
 <span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">,</span> <span class="token keyword">typename</span> Ret<span class="token punctuation">,</span> <span class="token keyword">typename</span> Tuple<span class="token punctuation">,</span> <span class="token keyword">typename</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> Types<span class="token punctuation">,</span> std<span class="token operator">::</span>size_t<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> Is<span class="token operator">></span>
-<span class="token keyword">void</span> 
+std<span class="token operator">::</span>enable_if_t<span class="token operator">&lt;</span><span class="token operator">!</span>std<span class="token operator">::</span>is_void<span class="token operator">&lt;</span>Ret<span class="token operator">></span><span class="token operator">::</span>value<span class="token operator">></span> 
 <span class="token function">ufunc_call</span><span class="token punctuation">(</span><span class="token function">Ret</span> <span class="token punctuation">(</span>Solution<span class="token operator">::</span><span class="token operator">*</span>fn<span class="token punctuation">)</span><span class="token punctuation">(</span>Types<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
             Tuple<span class="token operator">&amp;</span> params<span class="token punctuation">,</span> 
             std<span class="token operator">::</span>index_sequence<span class="token operator">&lt;</span>Is<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
