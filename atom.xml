@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuhenghuang.github.io/"/>
-  <updated>2020-11-01T10:16:47.479Z</updated>
+  <updated>2020-11-12T12:28:03.202Z</updated>
   <id>https://yuhenghuang.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>algorithm-iterative-approach-of-postorder-tree-traversal</title>
+    <link href="https://yuhenghuang.github.io/2020/11/algorithm-iterative-approach-of-postorder-tree-traversal/"/>
+    <id>https://yuhenghuang.github.io/2020/11/algorithm-iterative-approach-of-postorder-tree-traversal/</id>
+    <published>2020-11-12T11:58:05.000Z</published>
+    <updated>2020-11-12T12:28:03.202Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;The implementations of three types of tree traversal are all trivial by recursion, however, the problem becomes much more difficult if
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="https://yuhenghuang.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="Tree" scheme="https://yuhenghuang.github.io/tags/Tree/"/>
+    
+  </entry>
   
   <entry>
     <title>How to Run Leetcode Problem Locally By One Line</title>
