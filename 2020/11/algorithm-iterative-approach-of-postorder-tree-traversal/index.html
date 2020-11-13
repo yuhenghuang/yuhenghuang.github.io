@@ -354,7 +354,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    528
+                    540
                 </div>
                 
 
@@ -450,6 +450,9 @@
               <span class="token comment" spellcheck="true">// if super has no right child (m[super] = 0), or root is actually its detached right child</span>
               res <span class="token operator">+</span><span class="token operator">=</span> <span class="token function">abs</span><span class="token punctuation">(</span>m<span class="token punctuation">[</span>super<span class="token punctuation">]</span> <span class="token operator">-</span> root<span class="token operator">-</span><span class="token operator">></span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
           <span class="token punctuation">}</span>
+
+          <span class="token comment" spellcheck="true">// avoid memory leaking as the iteration breaks up the tree</span>
+          <span class="token keyword">delete</span> root<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
 
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>s<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -467,7 +470,7 @@
 
       <span class="token keyword">return</span> res<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>To achieve the same thing by iteration, we must resort to <code>stack</code>. And as there is no way we can save summed value from deeper nodes in iteration, I choose to update the values of the tree node. </p>
 <p>Given the feature of the problem, there should be another data structure that saves the summed values of children of a node if neither of two children is null. This is because in iteration we cannot access two children of a node at the same time.</p>
 <p>For other details, please follow the inline comments.</p>
