@@ -106,6 +106,9 @@ class Solution {
               // if super has no right child (m[super] = 0), or root is actually its detached right child
               res += abs(m[super] - root->val);
           }
+
+          // avoid memory leaking as the iteration breaks up the tree
+          delete root;
         }
 
         if (!s.empty()) {
