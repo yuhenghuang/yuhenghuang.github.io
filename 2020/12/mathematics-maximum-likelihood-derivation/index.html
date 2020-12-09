@@ -4,8 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Post-Order Tree Traversal by Iteration, Iceberg Tip">
-    <meta name="description" content="The implementations of three types of tree traversal are all trivial by recursion, however, the problem becomes much mor">
+    <meta name="keywords" content="Informal Derivation of Properties of MLE, Iceberg Tip">
+    <meta name="description" content="Suppose $L(x;\theta)$ is the log-likelihood function, where $x$ is the data and $\theta$ is the parameter to be estimate">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Post-Order Tree Traversal by Iteration | Iceberg Tip</title>
+    <title>Informal Derivation of Properties of MLE | Iceberg Tip</title>
     <link rel="icon" type="image/jpeg" href="/icon.jpeg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -198,12 +198,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Post-Order Tree Traversal by Iteration</h1>
+                    <h1 class="description center-align post-title">Informal Derivation of Properties of MLE</h1>
                 </div>
             </div>
         </div>
@@ -320,8 +320,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Tree/">
-                                <span class="chip bg-color">Tree</span>
+                            <a href="/tags/Mathematics/">
+                                <span class="chip bg-color">Mathematics</span>
                             </a>
                         
                     </div>
@@ -332,8 +332,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Algorithm/" class="post-category">
-                                Algorithm
+                            <a href="/categories/Proof/" class="post-category">
+                                Proof
                             </a>
                         
                     </div>
@@ -345,7 +345,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-11-12
+                    2020-12-09
                 </div>
                 
 
@@ -354,7 +354,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    540
+                    571
                 </div>
                 
 
@@ -372,108 +372,41 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>The implementations of three types of tree traversal are all trivial by recursion, however, the problem becomes much more difficult if the traversal is done by an iterative way. Among three traversals, post-order traversal is even harder to implemented as it traverses from left, right to the root itself at last.</p>
-<p>This post introduces a practical example by solving a problem on <a href="https://leetcode.com/" target="_blank" rel="noopener">Leetcode</a> using iterative post-order traversal.</p>
-<p><a href="https://leetcode.com/problems/binary-tree-tilt/" target="_blank" rel="noopener">Binary Tree Tilt</a></p>
-<p>The algorithm of the solution is quite straight forward.</p>
-<ol>
-<li><p>Sum up the values from deeper to left node and right node respectively</p>
-</li>
-<li><p>Compute the absolute difference of sums between left and right node, to see whether update answer or not</p>
-</li>
-<li><p>Sum up sums of left, right and the node itself to ancestors.</p>
-</li>
-</ol>
-<h3 id="Recursion"><a href="#Recursion" class="headerlink" title="Recursion"></a>Recursion</h3><p>The return value of <code>dfs(TreeNode*)</code> is the sum of all the deeper node values.</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-  <span class="token keyword">private</span><span class="token operator">:</span>
-    <span class="token keyword">int</span> res<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> <span class="token function">dfs</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>root<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-      <span class="token keyword">int</span> l <span class="token operator">=</span> <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token operator">-</span><span class="token operator">></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token keyword">int</span> r <span class="token operator">=</span> <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token operator">-</span><span class="token operator">></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      res <span class="token operator">+</span><span class="token operator">=</span> <span class="token function">abs</span><span class="token punctuation">(</span>l <span class="token operator">-</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-      <span class="token keyword">return</span> l <span class="token operator">+</span> r <span class="token operator">+</span> root<span class="token operator">-</span><span class="token operator">></span>val<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-  <span class="token keyword">public</span><span class="token operator">:</span>
-    <span class="token keyword">int</span> <span class="token function">findTilt</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-      <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token keyword">return</span> res<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Iteration"><a href="#Iteration" class="headerlink" title="Iteration"></a>Iteration</h3><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stack></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unordered_map></span></span>
-
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-  <span class="token keyword">public</span><span class="token operator">:</span>
-    <span class="token keyword">int</span> <span class="token function">findTiltIter</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      stack<span class="token operator">&lt;</span>TreeNode<span class="token operator">*</span><span class="token operator">></span> s<span class="token punctuation">;</span>
-      unordered_map<span class="token operator">&lt;</span>TreeNode<span class="token operator">*</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span> m<span class="token punctuation">;</span>
-      TreeNode<span class="token operator">*</span> super<span class="token punctuation">;</span>
-
-      <span class="token keyword">int</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-      <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>s<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-        <span class="token comment" spellcheck="true">// push root and its left non-null child</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          s<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-          root <span class="token operator">=</span> root<span class="token operator">-</span><span class="token operator">></span>left<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>s<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>s<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-          <span class="token comment" spellcheck="true">// if there is node in stack, and its right child is null</span>
-          <span class="token comment" spellcheck="true">// this means it either has no right child, or right child is detached (see next block)</span>
-          <span class="token comment" spellcheck="true">// save the pointer to root, pop it</span>
-          root <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-          s<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-          <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>s<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-            <span class="token comment" spellcheck="true">// if stack is not empty</span>
-            <span class="token comment" spellcheck="true">// the one at the stack top is the parent of root</span>
-            <span class="token comment" spellcheck="true">// update the summed value</span>
-            super <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            super<span class="token operator">-</span><span class="token operator">></span>val <span class="token operator">+</span><span class="token operator">=</span> root<span class="token operator">-</span><span class="token operator">></span>val<span class="token punctuation">;</span>
-
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>super<span class="token operator">-</span><span class="token operator">></span>right<span class="token punctuation">)</span>
-              <span class="token comment" spellcheck="true">// if super has right child, and not detached yet</span>
-              <span class="token comment" spellcheck="true">// at this point root must be super's left child</span>
-              <span class="token comment" spellcheck="true">// save the value to the hash map</span>
-              m<span class="token punctuation">[</span>super<span class="token punctuation">]</span> <span class="token operator">=</span> root<span class="token operator">-</span><span class="token operator">></span>val<span class="token punctuation">;</span>
-            <span class="token keyword">else</span>
-              <span class="token comment" spellcheck="true">// if super has no right child (m[super] = 0), or root is actually its detached right child</span>
-              res <span class="token operator">+</span><span class="token operator">=</span> <span class="token function">abs</span><span class="token punctuation">(</span>m<span class="token punctuation">[</span>super<span class="token punctuation">]</span> <span class="token operator">-</span> root<span class="token operator">-</span><span class="token operator">></span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
-          <span class="token punctuation">}</span>
-
-          <span class="token comment" spellcheck="true">// avoid memory leaking as the iteration breaks up the tree</span>
-          <span class="token keyword">delete</span> root<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>s<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          <span class="token comment" spellcheck="true">// assign the right child of the node at stack top to root</span>
-          root <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>right<span class="token punctuation">;</span>
-          <span class="token comment" spellcheck="true">// detach the right child so that previous block can work smoothly</span>
-          s<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span>
-          <span class="token comment" spellcheck="true">// empty stack indicates that root is the original root of the whole tree</span>
-          <span class="token comment" spellcheck="true">// and the tree traversal is completed</span>
-          <span class="token comment" spellcheck="true">// assign null pointer to root to end the while loop</span>
-          root <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-
-      <span class="token keyword">return</span> res<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>To achieve the same thing by iteration, we must resort to <code>stack</code>. And as there is no way we can save summed value from deeper nodes in iteration, I choose to update the values of the tree node. </p>
-<p>Given the feature of the problem, there should be another data structure that saves the summed values of children of a node if neither of two children is null. This is because in iteration we cannot access two children of a node at the same time.</p>
-<p>For other details, please follow the inline comments.</p>
+                <p>Suppose $L(x;\theta)$ is the log-likelihood function, where $x$ is the data and $\theta$ is the parameter to be estimated, this post exhibits an informal derivation of properties of Maximum Likelihood Estimator.</p>
+<p>Given the maximization problem,</p>
+<p>$$0 = \frac{1}{n} \sum^n_{i=1} \left.\frac{\partial L(x_i;\theta)}{\partial \theta} \right|_{\theta = \hat{\theta}}$$</p>
+<p>is the condition where $\hat{\theta}$ is the optimum.</p>
+<p>By Taylor expansion for some $\bar{\theta}\in [\theta _0, \hat{\theta}]$,</p>
+<p>$$0 = \frac{1}{n} \sum^n_{i=1} \left.\frac{\partial L(x_i;\theta)}{\partial \theta} \right|_{\theta = \theta_0}$$</p>
+<p>$$+(\hat{\theta} - \theta_0) \frac{1}{n} \sum^n_{i=1} \left.\frac{\partial^2 L(x_i;\theta)}{\partial \theta \partial \theta’} \right|_{\theta = \bar{\theta}}$$</p>
+<p>Under some regular assumptions/conditions, the following holds</p>
+<p>$$\frac{1}{n} \sum^n_{i=1} \left.\frac{\partial L(x_i;\theta)}{\partial \theta} \right|_{\theta = \theta_0}$$ </p>
+<p>$$\underset{p}{\to} \mathbb{E}\left( \left.\frac{\partial L(x;\theta)}{\partial \theta} \right|_{\theta = \theta_0} \right) = 0$$</p>
+<p>. The last equality comes from the maximization settings. Further three other conditions can be proved.</p>
+<p>$$\hat{\theta}\underset{p}{\to}\theta_0$$</p>
+<p>$$\bar{\theta}\underset{p}{\to}\theta_0$$</p>
+<p>$$\frac{1}{n} \sum^n_{i=1} \left.\frac{\partial^2 L(x_i;\theta)}{\partial \theta \partial \theta’} \right|_{\theta = \bar{\theta}}$$ </p>
+<p>$$\underset{p}{\to} \mathbb{E}\left( \left.\frac{\partial^2 L(x_i;\theta)}{\partial \theta \partial \theta’} \right|_{\theta = \theta_0} \right)$$</p>
+<p>Denote </p>
+<p>$$H(\theta) \equiv \mathbb{E}\left( \left.\frac{\partial^2 L(x_i;\theta)}{\partial \theta \partial \theta’} \right|_{\theta} \right)$$</p>
+<p>, by applying CLT</p>
+<p>$$\sqrt{n}(\hat{\theta} - \theta_0) \underset{d}{\to} \mathrm{N}\left(0, H(\theta_0)^{-1} \mathbb{E}\left( \left.\frac{\partial L(x;\theta)}{\partial \theta} \frac{\partial L(x;\theta)}{\partial \theta’}  \right|_{\theta = \theta_0} \right) H(\theta_0)^{-1}\right)$$</p>
+<p>. The variance part could be simplified by proving</p>
+<p>$$H(\theta_0) = -\mathbb{E}\left( \left.\frac{\partial L(x;\theta)}{\partial \theta} \frac{\partial L(x;\theta)}{\partial \theta’}  \right|_{\theta = \theta_0} \right)$$<br>.</p>
+<p>$$H(\theta_0) = \int_\Omega \left[\frac{1}{f(x;\theta)}\frac{\partial^2 f(x;\theta)}{\partial\theta\partial\theta’} - \frac{1}{f^2(x;\theta)}\frac{\partial f(x;\theta)}{\partial \theta}\frac{\partial f(x;\theta)}{\partial \theta’}\right]f(x;\theta)\mathrm{d}x$$</p>
+<p>Since the first order partial derivative of $L(x;\theta)$ w.r.t. $\theta$ is</p>
+<p>$$\frac{\partial L(x;\theta)}{\partial \theta} = \frac{1}{f(x;\theta)}\frac{\partial f(x;\theta)}{\partial \theta}$$</p>
+<p>and by the properties of density function,</p>
+<p>$$1 = \int_\Omega f(x;\theta)\mathrm{d}x$$</p>
+<p>$$0 = \int_\Omega \frac{\partial f(x;\theta)}{\partial \theta}\mathrm{d}x$$</p>
+<p>$$0 = \int_\Omega \frac{\partial^2 f(x;\theta)}{\partial\theta\partial\theta’}\mathrm{d}x$$</p>
+<p>, where $\Omega$ is the support of $x$.</p>
+<p>Then we have</p>
+<p>$$H(\theta_0) = \int_\Omega \frac{\partial^2 f(x;\theta)}{\partial\theta\partial\theta’}\mathrm{d}x - \int_\Omega\frac{1}{f^2(x;\theta)}\frac{\partial f(x;\theta)}{\partial \theta}\frac{\partial f(x;\theta)}{\partial \theta’}f(x;\theta)\mathrm{d}x$$</p>
+<p>$$H(\theta_0) = 0 - \mathbb{E}\left( \left.\frac{\partial L(x;\theta)}{\partial \theta} \frac{\partial L(x;\theta)}{\partial \theta’}  \right|_{\theta = \theta_0} \right)$$</p>
+<p>.</p>
+<p>In the end,</p>
+<p>$$\sqrt{n}(\hat{\theta} - \theta_0) \underset{d}{\to} \mathrm{N}\left(0, -H(\theta_0)^{-1}\right)$$</p>
 
             </div>
             <hr/>
@@ -499,7 +432,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yuhenghuang.github.io/2020/11/algorithm-iterative-approach-of-postorder-tree-traversal/">https://yuhenghuang.github.io/2020/11/algorithm-iterative-approach-of-postorder-tree-traversal/</a>
+                    <a href="https://yuhenghuang.github.io/2020/12/mathematics-maximum-likelihood-derivation/">https://yuhenghuang.github.io/2020/12/mathematics-maximum-likelihood-derivation/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -537,8 +470,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Tree/">
-                                    <span class="chip bg-color">Tree</span>
+                                <a href="/tags/Mathematics/">
+                                    <span class="chip bg-color">Mathematics</span>
                                 </a>
                             
                         </div>
@@ -579,9 +512,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2020/12/mathematics-maximum-likelihood-derivation/">
                     <div class="card-image">
@@ -599,9 +533,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -614,6 +548,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -632,31 +567,31 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/cpp-run-leetcode-problem-locally-by-one-line/">
+                <a href="/2020/11/algorithm-iterative-approach-of-postorder-tree-traversal/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="How to Run Leetcode Problem Locally By One Line">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Post-Order Tree Traversal by Iteration">
                         
-                        <span class="card-title">How to Run Leetcode Problem Locally By One Line</span>
+                        <span class="card-title">Post-Order Tree Traversal by Iteration</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            This post introduce a way to run leetcode problem by one line in cpp, with all the process wrapped up. c++14 and c++17 f
+                            The implementations of three types of tree traversal are all trivial by recursion, however, the problem becomes much mor
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-12
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/cpp/" class="post-category">
-                                    cpp
+                            <a href="/categories/Algorithm/" class="post-category">
+                                    Algorithm
                                 </a>
                             
                             
@@ -666,12 +601,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Tuple/">
-                        <span class="chip bg-color">Tuple</span>
-                    </a>
-                    
-                    <a href="/tags/Variadic-Template/">
-                        <span class="chip bg-color">Variadic Template</span>
+                    <a href="/tags/Tree/">
+                        <span class="chip bg-color">Tree</span>
                     </a>
                     
                 </div>
@@ -807,6 +738,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
     <footer class="page-footer bg-color">

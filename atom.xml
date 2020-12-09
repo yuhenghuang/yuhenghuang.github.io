@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuhenghuang.github.io/"/>
-  <updated>2020-11-13T00:39:29.496Z</updated>
+  <updated>2020-12-09T14:10:26.350Z</updated>
   <id>https://yuhenghuang.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Informal Derivation of Properties of MLE</title>
+    <link href="https://yuhenghuang.github.io/2020/12/mathematics-maximum-likelihood-derivation/"/>
+    <id>https://yuhenghuang.github.io/2020/12/mathematics-maximum-likelihood-derivation/</id>
+    <published>2020-12-09T12:42:35.000Z</published>
+    <updated>2020-12-09T14:10:26.350Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Suppose $L(x;\theta)$ is the log-likelihood function, where $x$ is the data and $\theta$ is the parameter to be estimated, this post
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Proof" scheme="https://yuhenghuang.github.io/categories/Proof/"/>
+    
+    
+      <category term="Mathematics" scheme="https://yuhenghuang.github.io/tags/Mathematics/"/>
+    
+  </entry>
   
   <entry>
     <title>Post-Order Tree Traversal by Iteration</title>
