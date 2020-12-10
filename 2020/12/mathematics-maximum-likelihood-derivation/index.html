@@ -393,7 +393,7 @@
 <p>$$\sqrt{n}(\hat{\theta} - \theta_0) \underset{d}{\to} \mathrm{N}\left(0, H(\theta_0)^{-1} \mathbb{E}\left( \left.\frac{\partial L(x;\theta)}{\partial \theta} \frac{\partial L(x;\theta)}{\partial \theta’}  \right|_{\theta = \theta_0} \right) H(\theta_0)^{-1}\right)$$</p>
 <p>. The variance part could be simplified by proving</p>
 <p>$$H(\theta_0) = -\mathbb{E}\left( \left.\frac{\partial L(x;\theta)}{\partial \theta} \frac{\partial L(x;\theta)}{\partial \theta’}  \right|_{\theta = \theta_0} \right)$$<br>.</p>
-<p>$$H(\theta_0) = \int_\Omega \left[\frac{1}{f(x;\theta)}\frac{\partial^2 f(x;\theta)}{\partial\theta\partial\theta’} - \frac{1}{f^2(x;\theta)}\frac{\partial f(x;\theta)}{\partial \theta}\frac{\partial f(x;\theta)}{\partial \theta’}\right]f(x;\theta)\mathrm{d}x$$</p>
+<p>$$H(\theta) = \int_\Omega \left[\frac{1}{f(x;\theta)}\frac{\partial^2 f(x;\theta)}{\partial\theta\partial\theta’} - \frac{1}{f^2(x;\theta)}\frac{\partial f(x;\theta)}{\partial \theta}\frac{\partial f(x;\theta)}{\partial \theta’}\right]f(x;\theta)\mathrm{d}x$$</p>
 <p>Since the first order partial derivative of $L(x;\theta)$ w.r.t. $\theta$ is</p>
 <p>$$\frac{\partial L(x;\theta)}{\partial \theta} = \frac{1}{f(x;\theta)}\frac{\partial f(x;\theta)}{\partial \theta}$$</p>
 <p>and by the properties of density function,</p>
@@ -402,7 +402,7 @@
 <p>$$0 = \int_\Omega \frac{\partial^2 f(x;\theta)}{\partial\theta\partial\theta’}\mathrm{d}x$$</p>
 <p>, where $\Omega$ is the support of $x$.</p>
 <p>Then we have</p>
-<p>$$H(\theta_0) = \int_\Omega \frac{\partial^2 f(x;\theta)}{\partial\theta\partial\theta’}\mathrm{d}x - \int_\Omega\frac{1}{f^2(x;\theta)}\frac{\partial f(x;\theta)}{\partial \theta}\frac{\partial f(x;\theta)}{\partial \theta’}f(x;\theta)\mathrm{d}x$$</p>
+<p>$$H(\theta) = \int_\Omega \frac{\partial^2 f(x;\theta)}{\partial\theta\partial\theta’}\mathrm{d}x - \int_\Omega\frac{1}{f^2(x;\theta)}\frac{\partial f(x;\theta)}{\partial \theta}\frac{\partial f(x;\theta)}{\partial \theta’}f(x;\theta)\mathrm{d}x$$</p>
 <p>$$H(\theta_0) = 0 - \mathbb{E}\left( \left.\frac{\partial L(x;\theta)}{\partial \theta} \frac{\partial L(x;\theta)}{\partial \theta’}  \right|_{\theta = \theta_0} \right)$$</p>
 <p>.</p>
 <p>In the end,</p>
