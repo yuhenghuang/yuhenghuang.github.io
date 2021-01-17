@@ -83,7 +83,7 @@ df = pd.read_csv(buff_byte, sep='\t', encoding='utf-8') # and other parameters
 ```python
 
 buff_byte = BytesIO()
-client.download_fileobj(Bucket='your_bucket', Key='/your/s3/key.tsv', Fileobj=buff_byte)
+client.download_fileobj(Bucket='your_bucket', Key='/your/s3/key.tsv.gz', Fileobj=buff_byte)
 
 # reset the pointer of the buffer
 buff_byte.seek(0)
