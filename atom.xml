@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuhenghuang.github.io/"/>
-  <updated>2020-12-10T06:34:21.433Z</updated>
+  <updated>2021-01-17T13:57:51.072Z</updated>
   <id>https://yuhenghuang.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Tuple in Clang</title>
+    <link href="https://yuhenghuang.github.io/2021/01/tuple-in-clang/"/>
+    <id>https://yuhenghuang.github.io/2021/01/tuple-in-clang/</id>
+    <published>2021-01-17T07:16:41.000Z</published>
+    <updated>2021-01-17T13:57:51.072Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;code&gt;tuple&lt;/code&gt; is a data structure referring to a container than holds data of different types. Its implementation is very straight
+        
+      
+    
+    </summary>
+    
+    
+      <category term="cpp" scheme="https://yuhenghuang.github.io/categories/cpp/"/>
+    
+    
+      <category term="Data Structure" scheme="https://yuhenghuang.github.io/tags/Data-Structure/"/>
+    
+  </entry>
   
   <entry>
     <title>Informal Derivation of Properties of MLE</title>
@@ -357,7 +384,7 @@
     <link href="https://yuhenghuang.github.io/2020/07/aws-upload-dataframe-object-to-s3-by-boto3/"/>
     <id>https://yuhenghuang.github.io/2020/07/aws-upload-dataframe-object-to-s3-by-boto3/</id>
     <published>2020-07-04T02:53:54.000Z</published>
-    <updated>2020-08-29T23:00:20.080Z</updated>
+    <updated>2020-12-12T12:17:44.188Z</updated>
     
     <summary type="html">
     
@@ -546,33 +573,6 @@
     
     
       <category term="Character/String" scheme="https://yuhenghuang.github.io/tags/Character-String/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Draw a random point in a circle uniformly</title>
-    <link href="https://yuhenghuang.github.io/2020/02/random-point-in-circle/"/>
-    <id>https://yuhenghuang.github.io/2020/02/random-point-in-circle/</id>
-    <published>2020-02-15T04:16:03.000Z</published>
-    <updated>2020-08-29T23:00:20.080Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;This post is inspired by the
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Algorithm" scheme="https://yuhenghuang.github.io/categories/Algorithm/"/>
-    
-    
-      <category term="Mathematics" scheme="https://yuhenghuang.github.io/tags/Mathematics/"/>
     
   </entry>
   

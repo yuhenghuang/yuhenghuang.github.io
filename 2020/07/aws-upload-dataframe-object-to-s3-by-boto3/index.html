@@ -358,7 +358,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    272
+                    273
                 </div>
                 
 
@@ -434,7 +434,7 @@ df <span class="token operator">=</span> pd<span class="token punctuation">.</sp
 </ul>
 <pre class="line-numbers language-python"><code class="language-python">
 buff_byte <span class="token operator">=</span> BytesIO<span class="token punctuation">(</span><span class="token punctuation">)</span>
-client<span class="token punctuation">.</span>download_fileobj<span class="token punctuation">(</span>Bucket<span class="token operator">=</span><span class="token string">'your_bucket'</span><span class="token punctuation">,</span> Key<span class="token operator">=</span><span class="token string">'/your/s3/key.tsv'</span><span class="token punctuation">,</span> Fileobj<span class="token operator">=</span>buff_byte<span class="token punctuation">)</span>
+client<span class="token punctuation">.</span>download_fileobj<span class="token punctuation">(</span>Bucket<span class="token operator">=</span><span class="token string">'your_bucket'</span><span class="token punctuation">,</span> Key<span class="token operator">=</span><span class="token string">'/your/s3/key.tsv.gz'</span><span class="token punctuation">,</span> Fileobj<span class="token operator">=</span>buff_byte<span class="token punctuation">)</span>
 
 <span class="token comment" spellcheck="true"># reset the pointer of the buffer</span>
 buff_byte<span class="token punctuation">.</span>seek<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
