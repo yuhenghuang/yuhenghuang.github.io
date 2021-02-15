@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuhenghuang.github.io/"/>
-  <updated>2021-01-17T13:57:51.072Z</updated>
+  <updated>2021-02-15T07:50:50.879Z</updated>
   <id>https://yuhenghuang.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Use Numpy with Armadillo and Eigen Seamlessly by Boost.Python</title>
+    <link href="https://yuhenghuang.github.io/2021/02/cpp-use-numpy-with-armadillo-and-eigen-seamlessly-by-boost-python/"/>
+    <id>https://yuhenghuang.github.io/2021/02/cpp-use-numpy-with-armadillo-and-eigen-seamlessly-by-boost-python/</id>
+    <published>2021-02-15T03:03:10.000Z</published>
+    <updated>2021-02-15T07:50:50.879Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;code&gt;Numpy&lt;/code&gt; is probably the most important library in &lt;em&gt;python&lt;/em&gt; for scientific computing. As the main data structure of
+        
+      
+    
+    </summary>
+    
+    
+      <category term="cpp" scheme="https://yuhenghuang.github.io/categories/cpp/"/>
+    
+    
+      <category term="Armadillo" scheme="https://yuhenghuang.github.io/tags/Armadillo/"/>
+    
+      <category term="Eigen" scheme="https://yuhenghuang.github.io/tags/Eigen/"/>
+    
+      <category term="Boost" scheme="https://yuhenghuang.github.io/tags/Boost/"/>
+    
+      <category term="Numpy" scheme="https://yuhenghuang.github.io/tags/Numpy/"/>
+    
+  </entry>
   
   <entry>
     <title>Tuple in Clang</title>
@@ -546,33 +579,6 @@
       <category term="Automation" scheme="https://yuhenghuang.github.io/tags/Automation/"/>
     
       <category term="Tidyverse" scheme="https://yuhenghuang.github.io/tags/Tidyverse/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>R non-ascii character encoding</title>
-    <link href="https://yuhenghuang.github.io/2020/05/r-non-ascii-character-encoding/"/>
-    <id>https://yuhenghuang.github.io/2020/05/r-non-ascii-character-encoding/</id>
-    <published>2020-05-03T13:54:26.000Z</published>
-    <updated>2020-08-29T23:00:20.080Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Although English has been a universal language for decades, tasks in real work are still dealing with other languages, which have more
-        
-      
-    
-    </summary>
-    
-    
-      <category term="R" scheme="https://yuhenghuang.github.io/categories/R/"/>
-    
-    
-      <category term="Character/String" scheme="https://yuhenghuang.github.io/tags/Character-String/"/>
     
   </entry>
   
