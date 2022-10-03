@@ -45,7 +45,7 @@ namespace Rcpp {
 As the `bool Rcpp::is<T>(SEXP x)` function only validates the type of one `SEXP`, there is some work need to be done before we can construct a universal validator.
 
 
-### Variadic Template after cpp11
+### Variadic Template since cpp11
 
 The variadic template was first introduced in cpp11. It enables template to accept variadic template parameters and process them recursively.
 
@@ -232,15 +232,17 @@ If there is a way to make out default constructed `SEXPREC`, the validator can b
 ```cpp
 template <typename... Types>
 bool universal_validator(SEXP* args, int nargs) {
-  return universal_validator<Types...>(args, args+nargs);
+  return universal_validator<Types...>(args, args + nargs);
 }
 
 
 template <typename T = void, typename... Types>
 bool universal_validator(SEXP* args, SEXP* end) {
-  if (args==end) return false;
+  if (args == end) 
+    return false;
+
   typedef typename Rcpp::traits::remove_const_and_reference<T>::type _Tp;
-  return Rcpp::is<_Tp>(*args) && universal_validator<Types...>(args+1, end);
+  return Rcpp::is<_Tp>(*args) && universal_validator<Types...>(args + 1, end);
 }
 
 

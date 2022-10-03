@@ -105,7 +105,7 @@ void read_ndarray(np::ndarray& arr) {
 ```
 
 
-### Return `numpy.ndarray` to *cpp*
+### Return `numpy.ndarray` from *cpp*
 
 Copy the data to `numpy.ndarray` and return it. Transpose should also be done.
 

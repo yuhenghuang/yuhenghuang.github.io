@@ -138,4 +138,4 @@ deploy:
   type: 'git'
   repository: git@github.com:yuhenghuang/yuhenghuang.github.io
   branch: master
-  token: "C:\\Users\\HUANG　YUHENG\\.ssh\\id_rsa"
+  token: "/home/yuhenghuang/.ssh/id_rsa"
